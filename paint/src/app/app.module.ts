@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { AppService } from './app.service';
+import { AppService } from './service/app.service';
 import { ShapeService } from './service/shape.service';
 
 @NgModule({

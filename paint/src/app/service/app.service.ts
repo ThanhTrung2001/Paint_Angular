@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
-import { ShapeService } from './service/shape.service';
+import { ShapeService } from './shape.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppService {
   private context!: CanvasRenderingContext2D;
+  //snapshot for undo
+  private snapshotHistory: ImageData[] = [];
+  private snapshotRedo: ImageData[] = [];
   //pen & eraser
   private isDrawing: boolean = false;
   private isPencil: boolean = true;
@@ -36,8 +39,10 @@ export class AppService {
   startDrawing(event: MouseEvent) {
     this.isDrawing = true;
     const canvasRect = this.context.canvas.getBoundingClientRect();
-    const offsetX = (event.clientX - canvasRect.left);
-    const offsetY = (event.clientY - canvasRect.top);
+    const scaleX = this.context.canvas.width / canvasRect.width;
+    const scaleY = this.context.canvas.height / canvasRect.height;
+    const offsetX = (event.clientX - canvasRect.left) * scaleX;
+    const offsetY = (event.clientY - canvasRect.top) * scaleY;
     this.lastX = offsetX;
     this.lastY = offsetY;
     this.width = 0;
@@ -50,8 +55,10 @@ export class AppService {
     if (!this.isDrawing) return;
     const canvasRect = this.context.canvas.getBoundingClientRect();
     //get the current mouse coordinates
-    const offsetX = (event.clientX - canvasRect.left);
-    const offsetY = (event.clientY - canvasRect.top);
+    const scaleX = this.context.canvas.width / canvasRect.width;
+    const scaleY = this.context.canvas.height / canvasRect.height;
+    const offsetX = (event.clientX - canvasRect.left) * scaleX;
+    const offsetY = (event.clientY - canvasRect.top) * scaleY;
     //this is for shape
     //1.rectangle width & height
     this.width = offsetX - this.lastX;
@@ -67,7 +74,7 @@ export class AppService {
       this.context.strokeStyle = this.strokeColor;
       this.context.globalCompositeOperation = 'source-over';
     }
-    //custom stroke
+    //custom stroke, fill style
     this.context.lineJoin = 'round';
     this.context.lineCap = 'round';
     this.context.lineWidth = this.lineWidth;
@@ -105,6 +112,11 @@ export class AppService {
   }
 
   stopDrawing() {
+    this.saveSnapshot();
+    this.isDrawing = false;
+  }
+
+  outRange(){
     this.isDrawing = false;
   }
 
@@ -174,6 +186,7 @@ export class AppService {
   //eraser
   useEraser(){
     this.isEraser = !this.isEraser;
+    console.log(this.isEraser);
   }
 
   //shape
@@ -198,5 +211,64 @@ export class AppService {
     this.shapeService.useFillShape(checked);
   }
 
-  
+  //clearAll
+  clearAll(){
+    this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height);
+    this.context.fillStyle = "#fff";
+    this.context.fillRect(0,0,this.context.canvas.width, this.context.canvas.height);
+  }
+
+  //save
+  saveImage(){
+    const link = document.createElement("a");
+    link.download = `${Date.now()}.png`;
+    link.href = this.context.canvas.toDataURL();
+    link.click();  
+  }
+
+  //snapshot fuction
+  saveSnapshot(){
+    console.log("save");
+    const canvasRect = this.context.canvas.getBoundingClientRect();
+    const snapshotItem = this.context.getImageData(0, 0, canvasRect.width, canvasRect.height);
+    this.snapshotHistory.push(snapshotItem);
+  }
+
+  rollback(){
+    if (this.snapshotHistory.length > 0) {
+      const latestSnapshot = this.snapshotHistory.pop(); //remove newest snapshot and ready to load closest snapshot 
+      if(latestSnapshot)
+      {
+        this.snapshotRedo.push(latestSnapshot);
+        if (this.snapshotHistory.length > 0) 
+        {
+          const closestSnapshot = this.snapshotHistory[this.snapshotHistory.length - 1];
+          this.context.putImageData(closestSnapshot, 0, 0); // Load the closest snapshot
+        } 
+        else 
+        {
+          // If there are no more snapshots, clear the canvas
+          this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height);
+        }
+      }
+    }
+  }
+
+  redo(){
+    if(this.snapshotRedo.length > 0)
+    {
+      console.log("redo");
+      const reSnapshot = this.snapshotRedo.pop();
+      if(reSnapshot)
+      {
+        this.snapshotHistory.push(reSnapshot);
+        this.context.putImageData(reSnapshot, 0, 0);
+      }
+    }  
+  }
+
+  //load
+  loadImage(event:any){
+    
+  }
 }

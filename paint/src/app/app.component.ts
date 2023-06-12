@@ -1,12 +1,12 @@
-import { Component,ElementRef, OnChanges, ViewChild} from '@angular/core';
-import { AppService } from './app.service';
+import { AfterViewInit, Component,ElementRef, ViewChild} from '@angular/core';
+import { AppService } from './service/app.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent{
+export class AppComponent implements AfterViewInit{
   title = "paint";
   @ViewChild('paintCanvas', { static: true }) canvas!: ElementRef<HTMLCanvasElement>;
 
@@ -20,6 +20,8 @@ export class AppComponent{
         const rect = canvasElement.getBoundingClientRect();
         canvasElement.width = rect.width;
         canvasElement.height = rect.height;
+        context.fillStyle = "#fff";
+        context.fillRect(0,0,rect.width, rect.height);
         this.appService.setContext(context);
       } else {
         console.error('Failed to get canvas context.');
@@ -39,6 +41,10 @@ export class AppComponent{
 
   stopDrawing() {
     this.appService.stopDrawing();
+  }
+
+  outRangeDraw() {
+    this.appService.outRange();
   }
   
   //color
@@ -81,6 +87,30 @@ export class AppComponent{
   //fill shape
   changeFill(event: any){
     this.appService.changeFill(event.target.checked);
+  }
+
+  //clear all
+  clearAll(){
+    this.appService.clearAll();
+  }
+
+  //Save
+  saveImage(){
+    this.appService.saveImage();
+  }
+
+  //snapshot function
+  rollback(){
+    this.appService.rollback();
+  }
+  
+  redo(){
+    this.appService.redo();
+  }
+
+  //Load
+  loadImage(event: any){
+    this.appService.loadImage(event);
   }
 
 

@@ -1,10 +1,11 @@
 <div class="main-body">
   <section class="selection-bar">
-    <button>Open</button>
+    <button type="file" (change)="loadImage($event)">Open</button>
     <button>View</button>
-    <button>Save</button>
-    <button>Rollback</button>
-    <button>Clear</button>
+    <button type="button" (click)="saveImage()">Save</button>
+    <button type="button" (click)="rollback()">Rollback</button>
+    <button type="button" (click)="redo()">Redo</button>
+    <button type="button" (click)="clearAll()">Clear</button>
   </section>
   <section class="toolbar-section">
     <div class="tool-container">
@@ -64,7 +65,7 @@
     <div class="tool-select-container">Select</div>
   </section>
   <section class="draw-section">
-    <canvas #paintCanvas class="draw-board" (mousedown)="startDrawing($event)" (mousemove)="draw($event)" (mouseup)="stopDrawing()" (mouseout)="stopDrawing()">
+    <canvas #paintCanvas class="draw-board" (mousedown)="startDrawing($event)" (mousemove)="draw($event)" (mouseup)="stopDrawing()" (mouseout)="outRangeDraw()">
     </canvas>
   </section>
   <section class="bottom-section">
