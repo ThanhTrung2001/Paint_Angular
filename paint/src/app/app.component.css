@@ -1,0 +1,134 @@
+.main-body{
+  display:flex;
+  flex-direction: column;
+  height: 100vh;
+  margin: 0 30px;
+}
+
+/* selection-bar */
+.selection-bar{
+  display:flex;
+  flex-direction: row;
+}
+
+  .selection-bar button{
+    margin-right: 15px;
+    background: transparent;
+    border:none;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+/* tool-bar */
+.toolbar-section{
+  margin-top: 20px;
+  display:flex;
+  flex-direction: row;
+  border: 1px solid #000;
+  border-radius: 5px;
+}
+
+  .tool-container, .tool-shape-container{
+    margin: 0 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+    .tool{
+      margin: 8px;
+      display:grid;
+      grid-template-columns: 30px 30px 30px;
+      column-gap: 10px;
+      row-gap: 10px;
+    }
+
+      .tool button{
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: transparent;
+        border-radius: 5px;
+        border: 1px solid #b9b9b9;
+      }
+        .tool button:hover{
+          background-color: #b9b9b9;
+        }
+
+        .tool .active{
+          background-color: #b9b9b9;
+        }
+        
+        .tool button img{
+          height: 20px;
+        }
+
+    .tool-title{
+      margin-bottom: 8px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+  .tool-shape-fill{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 15px;
+  }
+
+    .tool-shape-fill input{
+      height: 20px;
+    }
+
+
+  .tool-custom{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 8px;
+  }  
+
+    .tool-custom .tool-size-container, .tool-color-container{
+      display:flex;
+      flex-direction: column;
+      padding-bottom: 5px;
+      align-items: center;
+    }  
+
+      .tool-custom .tool-size-container input{
+        width: 80px;
+        height: 16px;
+        text-align: center;
+      }
+
+      .tool-custom .tool-color-container input{
+        width: 85px;
+        height: 30px;
+        text-align: center;
+      }
+
+/* draw-section */
+
+.draw-section{
+  flex:1;
+  display:flex;
+}
+
+  .draw-board{
+    border-radius: 5px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    margin-top:15px;
+    background-color: transparent;
+    flex:1;
+  }
+
+
+/* bottom-section */
+.bottom-section{
+  display:flex;
+  flex-direction: row;
+  margin-top:10px;
+}
+

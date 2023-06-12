@@ -1,0 +1,75 @@
+<div class="main-body">
+  <section class="selection-bar">
+    <button>Open</button>
+    <button>View</button>
+    <button>Save</button>
+    <button>Rollback</button>
+    <button>Clear</button>
+  </section>
+  <section class="toolbar-section">
+    <div class="tool-container">
+      <div class="tool">
+        <button type="button" class="active" (click)="usePencil()">
+          <img src="assets/icons/pencil.png" alt="">
+        </button>
+        <button type="button" (click)="useEraser()">
+          <img src="assets/icons/eraser.png" alt="">
+        </button>
+        <button type="button">
+          <img src="assets/icons/fillcolor.png" alt="">
+        </button>
+        <button type="button">
+          <img src="assets/icons/typography.png" alt="">
+        </button>
+      </div>
+      <div class="tool-title">
+        Tools
+      </div>
+    </div>
+    <div class="tool-shape-container">
+      <div class="tool">
+        <button type="button" (click)="useRectangle()">
+          <img src="assets/icons/rectangular.png" alt="">
+        </button>
+        <button type="button" (click)="useTriangle()">
+          <img src="assets/icons/triangle.png" alt="">
+        </button>
+        <button type="button" (click)="useCircle()">
+          <img src="assets/icons/circle.png" alt="">
+        </button>
+        <button type="button" (click)="useLine()">
+          <img src="assets/icons/line.png" alt="">
+        </button>
+      </div>
+      <div class="tool-title">
+        Shapes
+      </div>
+    </div>
+    <div class="tool-shape-fill">
+      <label for="fill-checkbox">Filled?</label>
+      <input type="checkbox" id="fill-checkbox" (change)="changeFill($event)">
+    </div>
+    <div class="tool-container">
+      <div class="tool-custom">
+        <div class="tool-size-container">
+          <label for="strock-customer">Size</label>
+          <input type="number" id="strock-customer" value="1" (change)="changeLineWidth($event)">
+        </div>
+        <div class="tool-color-container">
+          <label for="color-picker">Color</label>
+          <input type="color" id="color-picker" value="#000000" (change)="changeColor($event)">
+        </div>
+      </div>
+    </div>
+    <div class="tool-select-container">Select</div>
+  </section>
+  <section class="draw-section">
+    <canvas #paintCanvas class="draw-board" (mousedown)="startDrawing($event)" (mousemove)="draw($event)" (mouseup)="stopDrawing()" (mouseout)="stopDrawing()">
+    </canvas>
+  </section>
+  <section class="bottom-section">
+    <div class="current-tool">Current tool :</div>
+    <div class="mouse-coordinates">Mouse Coordinates</div>
+  </section>
+</div>
+<router-outlet></router-outlet>
