@@ -17,12 +17,10 @@ export class AppService {
   //for drawing
   private isDrawing: boolean = false;
   //stroke & line width
-  private strokeColor: string = "#000";
+  public strokeColor: string = "#000";
   private lineWidth: number = 1;
   //snapshot for shape draw
   private snapshot: any;
-
-  
 
   //set context for canvas
   setContext(context: CanvasRenderingContext2D) {
@@ -85,6 +83,10 @@ export class AppService {
       this.context.putImageData(this.snapshot, 0 , 0); 
       this.shapeService.drawShape(offsetX, offsetY);
     }
+    else if(this.toolService.selectedTool == this.toolService.isEyeDropper)
+    {
+      
+    }
     else
     {
       this.shapeService.normalDraw(offsetX, offsetY);
@@ -103,6 +105,21 @@ export class AppService {
   //topDrawing when out of range of canvas
   outRange(){
     this.isDrawing = false;
+  }
+
+  //eyedrop
+  eyedropPicker(event:MouseEvent){
+    if(this.toolService.selectedTool != this.toolService.isEyeDropper) return;
+    const canvasRect = this.context.canvas.getBoundingClientRect();
+    //get the current mouse coordinates
+    const scaleX = this.context.canvas.width / canvasRect.width;
+    const scaleY = this.context.canvas.height / canvasRect.height;
+    const offsetX = (event.clientX - canvasRect.left) * scaleX;
+    const offsetY = (event.clientY - canvasRect.top) * scaleY;
+    //get pixelImage data (type rgp in array) in mouse click
+    const pixelData = this.context.getImageData(offsetX, offsetY, 1, 1).data;
+    this.strokeColor = this.toolService.rgpToHex(pixelData);
+    console.log(this.strokeColor);
   }
 
   //color 

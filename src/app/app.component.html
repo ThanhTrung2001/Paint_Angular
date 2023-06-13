@@ -22,6 +22,9 @@
         <button type="button" (click)="useTool('text')">
           <img src="assets/icons/typography.png" alt="">
         </button>
+        <button type="button" (click)="useTool('eyedropper')">
+          <img src="assets/icons/color_dropper.png" alt="">
+        </button>
       </div>
       <div class="tool-title">
         Tools
@@ -58,14 +61,14 @@
         </div>
         <div class="tool-color-container">
           <label for="color-picker">Color</label>
-          <input type="color" id="color-picker" value="#000000" (change)="changeColor($event)">
+          <input type="color" id="color-picker" [value]="strokeColor" (change)="changeColor($event)">
         </div>
       </div>
     </div>
     <div class="tool-select-container">Select</div>
   </section>
   <section class="draw-section">
-    <canvas #paintCanvas class="draw-board" (mousedown)="startDrawing($event)" (mousemove)="draw($event)" (mouseup)="stopDrawing()" (mouseout)="outRangeDraw()">
+    <canvas #paintCanvas class="draw-board" (mousedown)="startDrawing($event)" (mousemove)="draw($event)" (mouseup)="stopDrawing()" (mouseout)="outRangeDraw()" (click)="eyedropPicker($event)">
     </canvas>
   </section>
   <section class="bottom-section">

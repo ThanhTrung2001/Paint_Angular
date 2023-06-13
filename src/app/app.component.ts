@@ -8,6 +8,7 @@ import { AppService } from './service/app/app.service';
 })
 export class AppComponent implements AfterViewInit{
   title = "paint";
+  strokeColor:string = "#000";
   @ViewChild('paintCanvas', { static: true }) canvas!: ElementRef<HTMLCanvasElement>;
 
   constructor(private appService: AppService) {}
@@ -45,6 +46,13 @@ export class AppComponent implements AfterViewInit{
 
   outRangeDraw() {
     this.appService.outRange();
+  }
+
+  //eyedrop
+  eyedropPicker(event: MouseEvent){
+    this.appService.eyedropPicker(event);
+    this.strokeColor = this.appService.strokeColor;
+    
   }
   
   //color
