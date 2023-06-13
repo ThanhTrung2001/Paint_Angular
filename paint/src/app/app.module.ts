@@ -4,8 +4,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { AppService } from './service/app.service';
-import { ShapeService } from './service/shape.service';
+import { AppService } from './service/app/app.service';
+import { ShapeService } from './service/shape/shape.service';
+import { ToolService } from './service/tool/tool.service';
+import { SnapshotService } from './service/snapshot/snapshot.service';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,7 @@ import { ShapeService } from './service/shape.service';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [AppService,ShapeService],
+  providers: [AppService,ShapeService, ToolService, SnapshotService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

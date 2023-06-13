@@ -127,6 +127,7 @@
 
 /* bottom-section */
 .bottom-section{
+  height: 100x;
   display:flex;
   flex-direction: row;
   margin-top:10px;

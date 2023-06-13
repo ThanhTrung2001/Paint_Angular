@@ -1,5 +1,5 @@
 import { AfterViewInit, Component,ElementRef, ViewChild} from '@angular/core';
-import { AppService } from './service/app.service';
+import { AppService } from './service/app/app.service';
 
 @Component({
   selector: 'app-root',
@@ -58,30 +58,13 @@ export class AppComponent implements AfterViewInit{
   }
 
   //pencil
-  usePencil(){
-    this.appService.usePencil();
-  }
-
-  //eraser
-  useEraser(){
-    this.appService.useEraser();
+  useTool(tool: string){
+    this.appService.useTool(tool);
   }
 
   //shape
-  useRectangle(){
-    this.appService.useRectangle();
-  }
-
-  useCircle(){
-    this.appService.useCircle();
-  }
-
-  useTriangle(){
-    this.appService.useTriangle();
-  }
-
-  useLine(){
-    this.appService.useLine();
+  setShape(shape:string){
+    this.appService.setShape(shape);
   }
 
   //fill shape

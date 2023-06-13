@@ -10,16 +10,16 @@
   <section class="toolbar-section">
     <div class="tool-container">
       <div class="tool">
-        <button type="button" class="active" (click)="usePencil()">
+        <button type="button" class="active" (click)="useTool('pencil')">
           <img src="assets/icons/pencil.png" alt="">
         </button>
-        <button type="button" (click)="useEraser()">
+        <button type="button" (click)="useTool('eraser')">
           <img src="assets/icons/eraser.png" alt="">
         </button>
-        <button type="button">
+        <button type="button" (click)="useTool('ink')">
           <img src="assets/icons/fillcolor.png" alt="">
         </button>
-        <button type="button">
+        <button type="button" (click)="useTool('text')">
           <img src="assets/icons/typography.png" alt="">
         </button>
       </div>
@@ -29,16 +29,16 @@
     </div>
     <div class="tool-shape-container">
       <div class="tool">
-        <button type="button" (click)="useRectangle()">
+        <button type="button" (click)="setShape('rectangle')">
           <img src="assets/icons/rectangular.png" alt="">
         </button>
-        <button type="button" (click)="useTriangle()">
+        <button type="button" (click)="setShape('triangle')">
           <img src="assets/icons/triangle.png" alt="">
         </button>
-        <button type="button" (click)="useCircle()">
+        <button type="button" (click)="setShape('circle')">
           <img src="assets/icons/circle.png" alt="">
         </button>
-        <button type="button" (click)="useLine()">
+        <button type="button" (click)="setShape('line')">
           <img src="assets/icons/line.png" alt="">
         </button>
       </div>
