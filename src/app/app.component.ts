@@ -9,6 +9,7 @@ import { AppService } from './service/app/app.service';
 export class AppComponent implements AfterViewInit{
   title = "paint";
   strokeColor:string = "#000";
+  cursorClass:string = "";
   @ViewChild('paintCanvas', { static: true }) canvas!: ElementRef<HTMLCanvasElement>;
 
   constructor(private appService: AppService) {}
@@ -67,6 +68,26 @@ export class AppComponent implements AfterViewInit{
 
   //pencil
   useTool(tool: string){
+    // switch(tool){
+    //   case 'pencil':
+    //     this.cursorClass = "cursor-pencil";
+    //     break;
+    //   case 'eraser':
+    //     this.cursorClass = "cursor-eraser";
+    //     break;
+    //   case 'ink':
+    //     this.cursorClass = "cursor-ink";
+    //     break;
+    //   case 'text':
+    //     this.cursorClass = "cursor-text";
+    //     break;
+    //   case 'eyedropper':
+    //     this.cursorClass = "cursor-eyedrop";
+    //     break;
+    //   default:
+
+    //     break;
+    // }
     this.appService.useTool(tool);
   }
 

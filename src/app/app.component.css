@@ -23,14 +23,16 @@
 /* tool-bar */
 .toolbar-section{
   margin-top: 20px;
+  padding: 0 15px;
   display:flex;
   flex-direction: row;
-  border: 1px solid #000;
+  border: 1px solid rgba(60, 64, 67, 0.3);
   border-radius: 5px;
+  align-items: center;
 }
 
   .tool-container, .tool-shape-container{
-    margin: 0 15px;
+    margin: 0 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -72,6 +74,7 @@
     }
 
   .tool-shape-fill{
+    margin-left: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -80,6 +83,11 @@
 
     .tool-shape-fill input{
       height: 20px;
+    }
+
+    .tool-shape-fill label{
+      font-size: 13px;
+      font-weight: bold;
     }
 
 
@@ -105,9 +113,15 @@
 
       .tool-custom .tool-color-container input{
         width: 85px;
-        height: 30px;
+        height: 22px;
         text-align: center;
       }
+
+    .divider{
+      height: 80%;
+      width: 0px;
+      border: 1px solid rgba(60, 64, 67, 0.3);
+    }
 
 /* draw-section */
 
@@ -123,6 +137,28 @@
     background-color: white;
     flex:1;
   }
+
+  .cursor-pencil{
+    cursor: url('../assets/icons/cursor/pencil.png'),auto;
+    margin-bottom: 10px;
+  }
+
+  .cursor-eraser{
+    cursor: url('../assets/icons/cursor/eraser.png'),auto;
+  }
+
+  .cursor-ink{
+    cursor: url('../assets/icons/cursor/fill_color.png'),auto;
+  }
+  
+  .cursor-text{
+    cursor: url('../assets/icons/cursor/typography.png'),auto;
+  }
+
+  .cursor-eyedrop{
+    cursor: url('../assets/icons/cursor/color_dropper.png'),auto;
+  }
+
 
 
 /* bottom-section */

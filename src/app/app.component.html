@@ -30,6 +30,7 @@
         Tools
       </div>
     </div>
+    <div class="divider"></div>
     <div class="tool-shape-container">
       <div class="tool">
         <button type="button" (click)="setShape('rectangle')">
@@ -53,6 +54,7 @@
       <label for="fill-checkbox">Filled?</label>
       <input type="checkbox" id="fill-checkbox" (change)="changeFill($event)">
     </div>
+    <div class="divider"></div> 
     <div class="tool-container">
       <div class="tool-custom">
         <div class="tool-size-container">
@@ -65,10 +67,11 @@
         </div>
       </div>
     </div>
+    <div class="divider"></div> 
     <div class="tool-select-container">Select</div>
   </section>
   <section class="draw-section">
-    <canvas #paintCanvas class="draw-board" (mousedown)="startDrawing($event)" (mousemove)="draw($event)" (mouseup)="stopDrawing()" (mouseout)="outRangeDraw()" (click)="eyedropPicker($event)">
+    <canvas #paintCanvas [class]="cursorClass" class="draw-board" (mousedown)="startDrawing($event)" (mousemove)="draw($event)" (mouseup)="stopDrawing()" (mouseout)="outRangeDraw()" (click)="eyedropPicker($event)">
     </canvas>
   </section>
   <section class="bottom-section">
