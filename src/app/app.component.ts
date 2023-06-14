@@ -10,6 +10,8 @@ export class AppComponent implements AfterViewInit{
   title = "paint";
   strokeColor:string = "#000";
   cursorClass:string = "";
+  currentTool:string = 'pencil';
+  currentShape:string = '';
   @ViewChild('paintCanvas', { static: true }) canvas!: ElementRef<HTMLCanvasElement>;
 
   constructor(private appService: AppService) {}
@@ -112,12 +114,17 @@ export class AppComponent implements AfterViewInit{
 
     //     break;
     // }
+    
     this.appService.useTool(tool);
+    this.currentTool = tool;
+    this.currentShape = '';
   }
 
   //shape
   setShape(shape:string){
     this.appService.setShape(shape);
+    this.currentShape = shape;
+    this.currentTool = '';
   }
 
   //fill shape

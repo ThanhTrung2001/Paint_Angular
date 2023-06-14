@@ -10,19 +10,19 @@
   <section class="toolbar-section">
     <div class="tool-container">
       <div class="tool">
-        <button type="button" class="active" (click)="useTool('pencil')">
+        <button type="button" [class.active]="currentTool === 'pencil'" (click)="useTool('pencil')">
           <img src="assets/icons/pencil.png" alt="">
         </button>
-        <button type="button" (click)="useTool('eraser')">
+        <button type="button" [class.active]="currentTool === 'eraser'" (click)="useTool('eraser')">
           <img src="assets/icons/eraser.png" alt="">
         </button>
-        <button type="button" (click)="useTool('ink')">
+        <button type="button" [class.active]="currentTool === 'ink'" (click)="useTool('ink')">
           <img src="assets/icons/fillcolor.png" alt="">
         </button>
-        <button type="button" (click)="useTool('text')">
+        <button type="button" [class.active]="currentTool === 'text'" (click)="useTool('text')">
           <img src="assets/icons/typography.png" alt="">
         </button>
-        <button type="button" (click)="useTool('eyedropper')">
+        <button type="button" [class.active]="currentTool === 'eyedropper'" (click)="useTool('eyedropper')">
           <img src="assets/icons/color_dropper.png" alt="">
         </button>
       </div>
@@ -33,16 +33,16 @@
     <div class="divider"></div>
     <div class="tool-shape-container">
       <div class="tool">
-        <button type="button" (click)="setShape('rectangle')">
+        <button type="button" [class.active]="currentShape === 'rectangle'" (click)="setShape('rectangle')">
           <img src="assets/icons/rectangular.png" alt="">
         </button>
-        <button type="button" (click)="setShape('triangle')">
+        <button type="button" [class.active]="currentShape === 'triangle'" (click)="setShape('triangle')">
           <img src="assets/icons/triangle.png" alt="">
         </button>
-        <button type="button" (click)="setShape('circle')">
+        <button type="button" [class.active]="currentShape === 'circle'" (click)="setShape('circle')">
           <img src="assets/icons/circle.png" alt="">
         </button>
-        <button type="button" (click)="setShape('line')">
+        <button type="button" [class.active]="currentShape === 'line'" (click)="setShape('line')">
           <img src="assets/icons/line.png" alt="">
         </button>
       </div>
