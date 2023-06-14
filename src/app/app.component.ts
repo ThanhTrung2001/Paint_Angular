@@ -49,11 +49,30 @@ export class AppComponent implements AfterViewInit{
     this.appService.outRange();
   }
 
+  inkOrEyedrop(event:MouseEvent){
+    switch(this.appService.getTool())
+    {
+      case 'ink':
+        this.areaInk(event);
+        break;
+      case 'eyedropper':
+        this.eyedropPicker(event);
+        break;
+      default:
+        break;
+    }
+  }
+
   //eyedrop
   eyedropPicker(event: MouseEvent){
     this.appService.eyedropPicker(event);
     this.strokeColor = this.appService.strokeColor;
     
+  }
+
+  //ink
+  areaInk(event: MouseEvent){
+    this.appService.areaInk(event);
   }
   
   //color
@@ -64,6 +83,11 @@ export class AppComponent implements AfterViewInit{
   //lineWidth
   changeLineWidth(event: any){
     this.appService.changeLineWidth(event.target.value);
+  }
+
+  //zoom
+  changeZoomScale(event: any){
+    this.appService.changeZoomScale(event);
   }
 
   //pencil

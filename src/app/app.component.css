@@ -20,6 +20,18 @@
     font-weight: 500;
   }
 
+  .selection-bar label{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    margin-right: 15px;
+    cursor: pointer;
+  }
+
+input[type="file"]{
+  display: none;
+}
+
 /* tool-bar */
 .toolbar-section{
   margin-top: 20px;

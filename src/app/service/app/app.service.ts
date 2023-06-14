@@ -16,11 +16,15 @@ export class AppService {
   private context!: CanvasRenderingContext2D;
   //for drawing
   private isDrawing: boolean = false;
+  private offsetX: number = 0;
+  private offsetY: number = 0;
   //stroke & line width
   public strokeColor: string = "#000";
   private lineWidth: number = 1;
   //snapshot for shape draw
   private snapshot: any;
+  //zoom
+  private zoomScale: number = 1;
 
   //set context for canvas
   setContext(context: CanvasRenderingContext2D) {
@@ -36,10 +40,10 @@ export class AppService {
     const canvasRect = this.context.canvas.getBoundingClientRect();
     const scaleX = this.context.canvas.width / canvasRect.width;
     const scaleY = this.context.canvas.height / canvasRect.height;
-    const offsetX = (event.clientX - canvasRect.left) * scaleX;
-    const offsetY = (event.clientY - canvasRect.top) * scaleY;
-    this.shapeService.lastX = offsetX;
-    this.shapeService.lastY = offsetY;
+    this.offsetX = (event.clientX - canvasRect.left) * scaleX;
+    this.offsetY = (event.clientY - canvasRect.top) * scaleY;
+    this.shapeService.lastX = this.offsetX;
+    this.shapeService.lastY = this.offsetY;
     this.shapeService.width = 0;
     this.shapeService.height = 0;
     //create snapshot to load every time draw shape to delete afterimage
@@ -53,14 +57,14 @@ export class AppService {
     //get the current mouse coordinates
     const scaleX = this.context.canvas.width / canvasRect.width;
     const scaleY = this.context.canvas.height / canvasRect.height;
-    const offsetX = (event.clientX - canvasRect.left) * scaleX;
-    const offsetY = (event.clientY - canvasRect.top) * scaleY;
+    this.offsetX = (event.clientX - canvasRect.left) * scaleX;
+    this.offsetY = (event.clientY - canvasRect.top) * scaleY;
     //this is for shape
     //1.rectangle width & height
-    this.shapeService.width = offsetX - this.shapeService.lastX;
-    this.shapeService.height = offsetY - this.shapeService.lastY;
+    this.shapeService.width = this.offsetX - this.shapeService.lastX;
+    this.shapeService.height = this.offsetY - this.shapeService.lastY;
     //2.circle radius
-    this.shapeService.radius = Math.sqrt((offsetX - this.shapeService.lastX)**2 + (offsetY - this.shapeService.lastY)**2);
+    this.shapeService.radius = Math.sqrt((this.offsetX - this.shapeService.lastX)**2 + (this.offsetY - this.shapeService.lastY)**2);
     //Check if eraser
     if (this.toolService.selectedTool == 'eraser') {
       // Use globalCompositeOperation to erase instead of drawing -> delete
@@ -70,7 +74,7 @@ export class AppService {
       this.context.globalCompositeOperation = 'source-over';
     }
     //custom stroke, fill style
-    this.context.lineJoin = 'round';
+    this.context.lineJoin = 'miter';
     this.context.lineCap = 'round';
     this.context.lineWidth = this.lineWidth;
     this.context.fillStyle = this.strokeColor;
@@ -81,24 +85,32 @@ export class AppService {
     {
       //when draw shape -> load snapshot when start draw to make sure all afterimage will be removed
       this.context.putImageData(this.snapshot, 0 , 0); 
-      this.shapeService.drawShape(offsetX, offsetY);
+      this.shapeService.drawShape(this.offsetX, this.offsetY);
     }
     else if(this.toolService.selectedTool == this.toolService.isEyeDropper)
     {
       
     }
+    else if(this.toolService.selectedTool == this.toolService.isInk)
+    {
+      
+    }
     else
     {
-      this.shapeService.normalDraw(offsetX, offsetY);
+      this.shapeService.normalDraw(this.offsetX, this.offsetY);
       //set lastposition again (with shape -> not draw continuous -> no need to set last position like normal draw)
-      this.shapeService.lastX = offsetX;
-      this.shapeService.lastY = offsetY;
+      this.shapeService.lastX = this.offsetX;
+      this.shapeService.lastY = this.offsetY;
     }
   }
 
   //stop Drawing
   stopDrawing() {
     this.snapshotService.saveSnapshot();
+    if(this.shapeService.shape != '')
+    {
+      this.shapeService.saveShapeArea(this.offsetX, this.offsetY);
+    }
     this.isDrawing = false;
   }
 
@@ -106,6 +118,64 @@ export class AppService {
   outRange(){
     this.isDrawing = false;
   }
+
+  //ink
+  areaInk(event: MouseEvent){
+    let insideShape:boolean = false;
+    const canvasRect = this.context.canvas.getBoundingClientRect();
+    //get the current mouse coordinates
+    const scaleX = this.context.canvas.width / canvasRect.width;
+    const scaleY = this.context.canvas.height / canvasRect.height;
+    const offsetX = (event.clientX - canvasRect.left) * scaleX;
+    const offsetY = (event.clientY - canvasRect.top) * scaleY;
+    //check color for pixel selected
+    const pixelData = this.context.getImageData(offsetX, offsetY, 1, 1).data;
+    const pixelColor = this.toolService.rgpToHex(pixelData);
+    //check the point is inside shape
+    const shape = this.shapeService.shapes.find(area => {
+      return this.context.isPointInPath(area.shapeItem, offsetX, offsetY);
+    });
+    if (shape != null) {
+      insideShape = true;
+    }
+    for(let x = -1; x < canvasRect.width; x ++)
+    {
+      for(let y = -1; y < canvasRect.height; y ++)
+      {
+        if(insideShape == true)
+        {
+          if(this.context.isPointInPath(shape!.shapeItem, x, y) == true)
+          {
+            const pixelDataChild = this.context.getImageData(x, y, 1, 1).data;
+            const pixelColorChild = this.toolService.rgpToHex(pixelDataChild);
+            this.context.fillStyle = this.strokeColor;
+            if(pixelColorChild == pixelColor)
+            {
+              this.context.fillRect(x, y, 1,1);
+            }
+          }
+        }
+        else
+        {
+          let pointOutside:boolean = true;
+          this.shapeService.shapes.forEach(area => {
+            if(this.context.isPointInPath(area!.shapeItem, x, y) == true)
+            {
+              pointOutside = false;
+            }
+          });
+          if(pointOutside == true)
+          {
+            this.context.fillStyle = this.strokeColor;
+            this.context.fillRect(x, y, 1,1);
+          }
+        }
+      }
+    }
+    //save snapshot
+    this.snapshotService.saveSnapshot();
+  }
+    
 
   //eyedrop
   eyedropPicker(event:MouseEvent){
@@ -131,10 +201,19 @@ export class AppService {
     this.lineWidth = width;
   }
 
+  //zoom
+  changeZoomScale(event: any){
+    
+  }
+
   //tool selected
   useTool(tool:string){
     this.toolService.useTool(tool);
     this.shapeService.shape = '';
+  }
+
+  getTool() : string{
+    return this.toolService.selectedTool;
   }
 
   //shape
@@ -143,6 +222,7 @@ export class AppService {
     this.toolService.selectedTool = '';
   }
 
+  //change fill shape
   changeFill(checked: boolean)
   {
     this.shapeService.useFillShape(checked);
@@ -175,6 +255,21 @@ export class AppService {
 
   //load
   loadImage(event:any){
-    
+    const file = event.target.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onload = (e: any) => {
+        const image = new Image();
+        image.onload = () => {
+          this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height);
+          this.context.drawImage(image, 0, 0);
+        };
+        image.src = e.target.result;
+      };
+
+      reader.readAsDataURL(file);
+    }
   }
 }
