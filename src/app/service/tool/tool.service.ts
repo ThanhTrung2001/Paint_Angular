@@ -25,18 +25,5 @@ export class ToolService {
     };
     return `#${componentToHex(r)}${componentToHex(g)}${componentToHex(b)}`;
   }
-
-  hexToRGB(fillColor: string): number[] {
-    // Remove the leading '#' if present
-    const hex = fillColor.replace('#', '');
-  
-    // Extract the individual color components
-    const red = parseInt(hex.substr(0, 2), 16);
-    const green = parseInt(hex.substr(2, 2), 16);
-    const blue = parseInt(hex.substr(4, 2), 16);
-  
-    // Return the RGB color components as an array
-    return [red, green, blue];
-  }
   
 }
