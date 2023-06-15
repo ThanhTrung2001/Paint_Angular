@@ -22,6 +22,7 @@ An Paint Web Application using Angular, GithubPage (Deploy), GithubActions & Doc
 <li>Pencil(Normal Draw)</li>
 <li>Eraser</li>
 <li>Ink (not complete)</li>
+<li>Text(haven't make yet)</li>
 <li>EyeDrop(Get color in canvas only)</li>
 </ul>
 
@@ -52,7 +53,8 @@ An Paint Web Application using Angular, GithubPage (Deploy), GithubActions & Doc
   <li>Programming Language : TypeScript</li>
   <li>Markup Language : HTML, CSS</li>
   <li>Diagram : Draw.io</li>
-  <li>Some Techniques use : GithubPage - Deploy, GithubAction + Docker - CICD, Unit test</li>
+  <li>UnitTest : Karmar (JS Tool), Jasmine (JS Framework)</li>
+  <li>Some Techniques use : GithubPage - Deploy, GithubAction + Docker - CICD</li>
  </ul>
  
 ## 3 DIAGRAM
