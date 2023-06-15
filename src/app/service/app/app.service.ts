@@ -13,14 +13,14 @@ export class AppService {
     private toolService: ToolService,
     private snapshotService: SnapshotService){}
   //context for canvas 
-  private context!: CanvasRenderingContext2D;
+  public context!: CanvasRenderingContext2D;
   //for drawing
-  private isDrawing: boolean = false;
+  public isDrawing: boolean = false;
   private offsetX: number = 0;
   private offsetY: number = 0;
   //stroke & line width
   public strokeColor: string = "#000";
-  private lineWidth: number = 1;
+  public lineWidth: number = 1;
   //snapshot for shape draw
   private snapshot: any;
   //zoom
@@ -33,9 +33,17 @@ export class AppService {
     this.shapeService.context = this.context;
   }
 
+  getContext(){
+    return this.context;
+  }
+
+  changeDrawState(drawing: boolean){
+    this.isDrawing = drawing;
+  }
+
   //Start draw, get the current position when mouse down
   startDrawing(event: MouseEvent) {
-    this.isDrawing = true;
+    this.changeDrawState(true)
     //config to get the right mouse position if change resolution when draw
     const canvasRect = this.context.canvas.getBoundingClientRect();
     const scaleX = this.context.canvas.width / canvasRect.width;
@@ -111,7 +119,7 @@ export class AppService {
     {
       this.shapeService.saveShapeArea(this.offsetX, this.offsetY);
     }
-    this.isDrawing = false;
+    this.changeDrawState(false);
   }
 
   //topDrawing when out of range of canvas
@@ -220,6 +228,10 @@ export class AppService {
   setShape(shape:string){
     this.shapeService.setShape(shape);
     this.toolService.selectedTool = '';
+  }
+
+  getShape() : string{
+    return this.shapeService.shape;
   }
 
   //change fill shape

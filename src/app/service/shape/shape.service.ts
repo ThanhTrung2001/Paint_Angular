@@ -132,7 +132,6 @@ export class ShapeService {
       this.context.fill();
       return;
     }
-    
   }
 
   //line

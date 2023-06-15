@@ -15,7 +15,7 @@ export class ToolService {
     this.selectedTool = tool;
   }
 
-  rgpToHex(pixelData: ImageData["data"]){
+  rgpToHex(pixelData: any){
     const r = pixelData[0];
     const g = pixelData[1];
     const b = pixelData[2];
