@@ -105,10 +105,16 @@ export class AppService {
     }
     else
     {
-      this.shapeService.normalDraw(this.offsetX, this.offsetY);
-      //set lastposition again (with shape -> not draw continuous -> no need to set last position like normal draw)
-      this.shapeService.lastX = this.offsetX;
-      this.shapeService.lastY = this.offsetY;
+      if (this.toolService.selectedTool == this.toolService.isText)
+      {
+
+      }
+      else {
+        this.shapeService.normalDraw(this.offsetX, this.offsetY);
+        //set lastposition again (with shape -> not draw continuous -> no need to set last position like normal draw)
+        this.shapeService.lastX = this.offsetX;
+        this.shapeService.lastY = this.offsetY;
+      }
     }
   }
 

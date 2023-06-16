@@ -10,6 +10,7 @@ export class ToolService {
   public isInk: string = 'ink';
   public isTextArea: string = 'text'; 
   public isEyeDropper: string = 'eyedropper';
+  public isText: string = 'text';
 
   useTool(tool: string){
     this.selectedTool = tool;

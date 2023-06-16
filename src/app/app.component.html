@@ -2,10 +2,16 @@
   <section class="selection-bar">
     <label for="file-input">Open</label>
     <input type="file" id="file-input" (change)="loadImage($event)" />
-    <button type="button" (click)="saveImage()">Save</button>
-    <button type="button" (click)="rollback()">Rollback</button>
-    <button type="button" (click)="redo()">Redo</button>
     <button type="button" (click)="clearAll()">Clear</button>
+    <button type="button" (click)="saveImage()">
+      <img src="assets/icons/save.png" alt="">
+    </button>
+    <button type="button" (click)="rollback()">
+      <img src="assets/icons/undo.png" alt="">
+    </button>
+    <button type="button" (click)="redo()">
+      <img src="assets/icons/redo.png" alt="">
+    </button>
   </section>
   <section class="toolbar-section">
     <div class="tool-container">
