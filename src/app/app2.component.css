@@ -1,3 +1,17 @@
+.tooltiptext{
+  display: none;
+  width: 120px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 95%;
+  opacity: 0.8;
+}
+
 /* Responsive Styling Selection bar */
 @media (max-width: 778px) {
   .selection-bar .button-container {

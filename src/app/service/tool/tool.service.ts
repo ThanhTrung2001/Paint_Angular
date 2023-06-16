@@ -11,6 +11,9 @@ export class ToolService {
   public isTextArea: string = 'text'; 
   public isEyeDropper: string = 'eyedropper';
   public isText: string = 'text';
+  public isSelectArea: string = 'selectArea';
+  //select area
+  
 
   useTool(tool: string){
     this.selectedTool = tool;
@@ -25,6 +28,10 @@ export class ToolService {
       return hex.length === 1 ? "0" + hex : hex;
     };
     return `#${componentToHex(r)}${componentToHex(g)}${componentToHex(b)}`;
+  }
+
+  selectArea(offsetX:number, offsetY:number){
+
   }
   
 }

@@ -28,18 +28,23 @@
       <div class="tool">
         <button type="button" [class.active]="currentTool === 'pencil'" (click)="useTool('pencil')">
           <img src="assets/icons/pencil.png" alt="">
+          <span class="tooltiptext">Pencil</span>
         </button>
         <button type="button" [class.active]="currentTool === 'eraser'" (click)="useTool('eraser')">
           <img src="assets/icons/eraser.png" alt="">
+          <span class="tooltiptext">Eraser</span>
         </button>
         <button type="button" [class.active]="currentTool === 'ink'" (click)="useTool('ink')">
           <img src="assets/icons/fillcolor.png" alt="">
+          <span class="tooltiptext">Fill</span>
         </button>
         <button type="button" [class.active]="currentTool === 'text'" (click)="useTool('text')">
           <img src="assets/icons/typography.png" alt="">
+          <span class="tooltiptext">Text</span>
         </button>
         <button type="button" [class.active]="currentTool === 'eyedropper'" (click)="useTool('eyedropper')">
           <img src="assets/icons/color_dropper.png" alt="">
+          <span class="tooltiptext">EyeDrop</span>
         </button>
       </div>
       <div class="tool-title">
@@ -51,15 +56,19 @@
       <div class="tool">
         <button type="button" [class.active]="currentShape === 'rectangle'" (click)="setShape('rectangle')">
           <img src="assets/icons/rectangular.png" alt="">
+          <span class="tooltiptext">Rectangle</span>
         </button>
         <button type="button" [class.active]="currentShape === 'triangle'" (click)="setShape('triangle')">
           <img src="assets/icons/triangle.png" alt="">
+          <span class="tooltiptext">Triangle</span>
         </button>
         <button type="button" [class.active]="currentShape === 'circle'" (click)="setShape('circle')">
           <img src="assets/icons/circle.png" alt="">
+          <span class="tooltiptext">Ellipse</span>
         </button>
         <button type="button" [class.active]="currentShape === 'line'" (click)="setShape('line')">
           <img src="assets/icons/line.png" alt="">
+          <span class="tooltiptext">Line</span>
         </button>
       </div>
       <div class="tool-title">
@@ -88,15 +97,34 @@
       </div>
       <label class="tool-title" for="color-picker">Color</label>
     </div>
-     <!-- <div class="tool-container">
-      <div class="tool-custom">
-        <div class="tool-size-container">
-          <label for="zoom-custom">Zoom</label>
-          <input type="range" id="zoom-custom" value="1" min="1" max="2" step="0.1" (change)="changeZoomScale($event)" >
-        </div>
+    <div class="divider"></div>
+    <!-- <div class="tool-container">
+      <div class="tool">
+        <button type="button" [class.active]="currentTool === 'selectArea'" (click)="useTool('selectedTool')">
+          <img src="assets/icons/select.png" alt="">
+          <span class="tooltiptext">Select</span>
+        </button>
+        <button type="button" (click)="useTool('eraser')">
+          <img src="assets/icons/rotate.png" alt="">
+          <span class="tooltiptext">Rotate right 90</span>
+        </button>
+        <button type="button" (click)="useTool('ink')">
+          <img style="transform: scaleX(-1);" src="assets/icons/rotate.png" alt="">
+          <span class="tooltiptext">Rotate left 90</span>
+        </button>
+        <button type="button" (click)="useTool('text')">
+          <img src="assets/icons/flip_horizontal.png" alt="">
+          <span class="tooltiptext">Flip horizontal</span>
+        </button>
+        <button type="button" (click)="useTool('eyedropper')">
+          <img src="assets/icons/flip_vertical.png" alt="">
+          <span class="tooltiptext">Flip vertical</span>
+        </button>
       </div>
-    </div> 
-    <div class="tool-select-container">Select</div> -->
+      <div class="tool-title">
+        Advanced Tool
+      </div>
+    </div> -->
   </section>
   <section class="draw-section">
     <canvas #paintCanvas [class]="cursorClass" class="draw-board" (mousedown)="startDrawing($event)" (mousemove)="draw($event)" (mouseup)="stopDrawing()" (mouseout)="outRangeDraw()" (click)="inkOrEyedrop($event)">

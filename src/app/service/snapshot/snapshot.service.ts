@@ -51,5 +51,10 @@ export class SnapshotService {
     this.snapshotHistory.push(snapshotItem);
   }
 
+  //clear snapshot if tool:select is use
+  clearSnapshotInHistory(){
+    this.snapshotHistory.pop();
+  }
+
 
 }

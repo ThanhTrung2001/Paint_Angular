@@ -103,28 +103,7 @@ export class AppComponent implements AfterViewInit{
   }
 
   //pencil
-  useTool(tool: string){
-    // switch(tool){
-    //   case 'pencil':
-    //     this.cursorClass = "cursor-pencil";
-    //     break;
-    //   case 'eraser':
-    //     this.cursorClass = "cursor-eraser";
-    //     break;
-    //   case 'ink':
-    //     this.cursorClass = "cursor-ink";
-    //     break;
-    //   case 'text':
-    //     this.cursorClass = "cursor-text";
-    //     break;
-    //   case 'eyedropper':
-    //     this.cursorClass = "cursor-eyedrop";
-    //     break;
-    //   default:
-
-    //     break;
-    // }
-    
+  useTool(tool: string){ 
     this.appService.useTool(tool);
     this.currentTool = tool;
     this.currentShape = '';

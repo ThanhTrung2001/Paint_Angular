@@ -77,8 +77,9 @@ input[type="color"]::-moz-color-swatch {
 }
 
 input[type="number"]{
+  border-radius: 5px;
   border: 2px solid #000000;
-  padding-left: 10px;
+  padding-left: 8px;
   font-size: 14px;
 }
 
@@ -94,7 +95,7 @@ input[type="number"]{
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
   border-radius: 5px;
   align-items: center;
-  background-color: #F9F9F9;
+  background-color: #f9f9f9;
 }
 
   .tool-container{
@@ -133,6 +134,13 @@ input[type="number"]{
       }
         .tool button:hover{
           background-color: #cacaca;
+          .tooltiptext{
+            display:block;
+          }
+        }
+
+        .tool button:hover .tooltiptext{
+          display:block;
         }
 
         .tool .active{
@@ -216,29 +224,6 @@ input[type="number"]{
     flex:1;
   }
 
-  .cursor-pencil{
-    cursor: url('../assets/icons/cursor/pencil.png'),auto;
-    margin-bottom: 10px;
-  }
-
-  .cursor-eraser{
-    cursor: url('../assets/icons/cursor/eraser.png'),auto;
-  }
-
-  .cursor-ink{
-    cursor: url('../assets/icons/cursor/fill_color.png'),auto;
-  }
-  
-  .cursor-text{
-    cursor: url('../assets/icons/cursor/typography.png'),auto;
-  }
-
-  .cursor-eyedrop{
-    cursor: url('../assets/icons/cursor/color_dropper.png'),auto;
-  }
-
-
-
 /* bottom-section */
 .bottom-section{
   height: 100x;
@@ -246,4 +231,5 @@ input[type="number"]{
   flex-direction: row;
   margin-top:10px;
 }
+
 

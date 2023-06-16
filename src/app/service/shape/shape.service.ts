@@ -20,8 +20,6 @@ export class ShapeService {
   //for rectangle
   public width: number = 0;
   public height: number = 0;
-  //for circle
-  public radius: number = 0;
   //shape array to check for fill color
   public shapes: Shape[] = [];
   public shapeItem = new Path2D();
@@ -109,8 +107,8 @@ export class ShapeService {
 
   //circle
   circleDraw(){
-    this.context.arc(this.lastX,this.lastY, this.radius, 0, 2* Math.PI);
-    this.shapeItem.arc(this.lastX,this.lastY, this.radius, 0, 2* Math.PI);
+    this.context.ellipse(this.lastX,this.lastY, Math.abs(this.width), Math.abs(this.height),0, 0, 2* Math.PI);
+    this.shapeItem.ellipse(this.lastX,this.lastY, Math.abs(this.width), Math.abs(this.height),0, 0, 2* Math.PI);
     if(this.isFilled == true)
     {
       this.context.fill();
@@ -120,13 +118,21 @@ export class ShapeService {
 
   //triangle
   triangleDraw(offsetX:number, offsetY:number){
-    this.context.moveTo(this.lastX, this.lastY);
-    this.context.lineTo(offsetX, offsetY)
-    this.context.lineTo(this.lastX*2 - offsetX, offsetY);
+    let middleTopX = this.lastX + this.width/2;
+    let middleTopY = this.lastY;
+    let leftTopX = this.lastX;
+    let leftTopY = this.lastY + this.height;
+    let rightTopX = this.lastX +this.width;
+    let rightTopY = this.lastY+ this.height;
+    //draw triangle
+    this.context.moveTo(middleTopX, middleTopY);
+    this.context.lineTo(rightTopX, rightTopY)
+    this.context.lineTo(leftTopX, leftTopY);
+    //draw shape in shapes array
+    this.shapeItem.moveTo(middleTopX, middleTopY);
+    this.shapeItem.lineTo(rightTopX, rightTopY)
+    this.shapeItem.lineTo(leftTopX, leftTopY);
     this.context.closePath();
-    this.shapeItem.moveTo(this.lastX, this.lastY);
-    this.shapeItem.lineTo(offsetX, offsetY)
-    this.shapeItem.lineTo(this.lastX*2 - offsetX, offsetY);
     if(this.isFilled == true)
     {
       this.context.fill();

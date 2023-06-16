@@ -25,6 +25,10 @@ export class AppService {
   private snapshot: any;
   //zoom
   private zoomScale: number = 1;
+  //rotate or flip
+  private rotateDegree:number = 0;
+  private flipHorizontal:boolean = false;
+  private flipVertical:boolean = false;
 
   //set context for canvas
   setContext(context: CanvasRenderingContext2D) {
@@ -71,8 +75,6 @@ export class AppService {
     //1.rectangle width & height
     this.shapeService.width = this.offsetX - this.shapeService.lastX;
     this.shapeService.height = this.offsetY - this.shapeService.lastY;
-    //2.circle radius
-    this.shapeService.radius = Math.sqrt((this.offsetX - this.shapeService.lastX)**2 + (this.offsetY - this.shapeService.lastY)**2);
     //Check if eraser
     if (this.toolService.selectedTool == 'eraser') {
       // Use globalCompositeOperation to erase instead of drawing -> delete
@@ -94,6 +96,11 @@ export class AppService {
       //when draw shape -> load snapshot when start draw to make sure all afterimage will be removed
       this.context.putImageData(this.snapshot, 0 , 0); 
       this.shapeService.drawShape(this.offsetX, this.offsetY);
+    }
+    else if(this.toolService.selectedTool == this.toolService.isSelectArea)
+    {
+      this.context.putImageData(this.snapshot, 0 , 0); 
+      this.toolService.selectArea(this.offsetX, this.offsetY);
     }
     else if(this.toolService.selectedTool == this.toolService.isEyeDropper)
     {
@@ -277,17 +284,58 @@ export class AppService {
 
     if (file) {
       const reader = new FileReader();
-
       reader.onload = (e: any) => {
         const image = new Image();
         image.onload = () => {
           this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height);
-          this.context.drawImage(image, 0, 0);
+          if(image.width <= this.context.canvas.width && image.height <= this.context.canvas.height){
+            this.context.drawImage(image, 0, 0);
+          }
+          else{
+            ////1. Build The image follow resolution
+            // //get the ratio of image for canvas
+            // const imageRatio = image.width / image.height;
+            // const canvasRatio = this.context.canvas.width / this.context.canvas.height;
+            // // defind the new size for image in canvas
+            // let drawWidth:number = 0;
+            // let drawHeight:number = 0;
+  
+            // if (imageRatio > canvasRatio) {
+            //   drawWidth = this.context.canvas.width;
+            //   drawHeight = this.context.canvas.width / imageRatio;
+            // } else {
+            //   drawWidth = this.context.canvas.height * imageRatio;
+            //   drawHeight = this.context.canvas.height;
+            // }
+
+            // this.context.drawImage(image, 0, 0, image.width, image.height, 0, 0, drawWidth, drawHeight);
+            
+            //2.build the image full canvas
+            this.context.canvas.width = image.width;
+            this.context.canvas.height = image.height;
+            this.context.drawImage(image, 0, 0, image.width, image.height, 0, 0, image.width, image.height);
+          }
+          
         };
         image.src = e.target.result;
       };
 
       reader.readAsDataURL(file);
     }
+  }
+
+  //rotate function
+  rotate(rotateDegree: number){
+
+  }
+
+  //flip function
+  flip(isHorizon:boolean){
+
+  }
+
+  //select function
+  selectArea(){
+
   }
 }
