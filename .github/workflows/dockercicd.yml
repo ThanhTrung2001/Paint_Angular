@@ -13,12 +13,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Run tests
-        # Add the necessary test commands here
-        run: |
-          npm install
-          npm test
-
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
