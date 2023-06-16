@@ -1,4 +1,4 @@
-import { AfterViewInit, Component,ElementRef, ViewChild} from '@angular/core';
+import { AfterViewInit, Component,ElementRef, ViewChild, HostListener} from '@angular/core';
 import { AppService } from './service/app/app.service';
 
 @Component({
@@ -13,6 +13,16 @@ export class AppComponent implements AfterViewInit{
   currentTool:string = 'pencil';
   currentShape:string = '';
   @ViewChild('paintCanvas', { static: true }) canvas!: ElementRef<HTMLCanvasElement>;
+  @HostListener('document:keydown.control.z', ['$event'])
+  pressCtrlZ(event: KeyboardEvent) {
+    // Add your desired functionality here
+    this.rollback();
+  }
+  @HostListener('document:keydown.control.y', ['$event'])
+  pressCtrlY(event: KeyboardEvent) {
+    this.redo();
+  }
+
 
   constructor(private appService: AppService) {}
 
@@ -155,6 +165,5 @@ export class AppComponent implements AfterViewInit{
   loadImage(event: any){
     this.appService.loadImage(event);
   }
-
 
 }

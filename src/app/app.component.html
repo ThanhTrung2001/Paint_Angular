@@ -1,17 +1,27 @@
 <div class="main-body">
   <section class="selection-bar">
-    <label for="file-input">Open</label>
-    <input type="file" id="file-input" (change)="loadImage($event)" />
-    <button type="button" (click)="clearAll()">Clear</button>
-    <button type="button" (click)="saveImage()">
-      <img src="assets/icons/save.png" alt="">
-    </button>
-    <button type="button" (click)="rollback()">
-      <img src="assets/icons/undo.png" alt="">
-    </button>
-    <button type="button" (click)="redo()">
-      <img src="assets/icons/redo.png" alt="">
-    </button>
+    <div class="button-container">
+      <label for="file-input">Open</label>
+      <input type="file" id="file-input" (change)="loadImage($event)" />
+    </div>
+    <div class="button-container">
+      <button type="button" (click)="clearAll()">Clear</button>
+    </div>
+    <div class="button-container">
+      <button type="button" (click)="saveImage()">
+        <img src="assets/icons/save.png" alt="">
+      </button>
+    </div>
+    <div class="button-container">
+      <button type="button" (click)="rollback()">
+        <img src="assets/icons/undo.png" alt="">
+      </button>
+    </div>
+    <div class="button-container">
+      <button type="button" (click)="redo()">
+        <img src="assets/icons/redo.png" alt="">
+      </button>
+    </div>
   </section>
   <section class="toolbar-section">
     <div class="tool-container">
@@ -60,7 +70,7 @@
       <label for="fill-checkbox">Filled?</label>
       <input type="checkbox" id="fill-checkbox" (change)="changeFill($event)">
     </div>
-    <div class="divider"></div> 
+    <div class="divider"></div>
     <div class="tool-container">
       <div class="tool-custom">
         <div class="tool-size-container">
@@ -73,17 +83,15 @@
         </div>
       </div>
     </div>
-    <div class="divider"></div> 
-    <div class="tool-container">
+     <!-- <div class="tool-container">
       <div class="tool-custom">
         <div class="tool-size-container">
           <label for="zoom-custom">Zoom</label>
           <input type="range" id="zoom-custom" value="1" min="1" max="2" step="0.1" (change)="changeZoomScale($event)" >
         </div>
       </div>
-    </div>
-    <div class="divider"></div> 
-    <!-- <div class="tool-select-container">Select</div> -->
+    </div> 
+    <div class="tool-select-container">Select</div> -->
   </section>
   <section class="draw-section">
     <canvas #paintCanvas [class]="cursorClass" class="draw-board" (mousedown)="startDrawing($event)" (mousemove)="draw($event)" (mouseup)="stopDrawing()" (mouseout)="outRangeDraw()" (click)="inkOrEyedrop($event)">

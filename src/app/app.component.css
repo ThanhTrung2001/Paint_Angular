@@ -12,40 +12,82 @@
   align-items: center;
 }
 
-  .selection-bar button{
-    margin-right: 15px;
+.selection-bar .button-container{
+  background-color: transparent;
+  height: 25px;
+  width: 60px;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
+
+  .selection-bar .button-container:hover{
+    background-color: #e0e0e0;
+    border-radius: 5px;
+  }
+
+  .selection-bar .button-container button{
+    width: 100%;
     background: transparent;
     border:none;
     cursor: pointer;
-    font-size: 15px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
     font-weight: 500;
   }
 
-  .selection-bar label{
+  .selection-bar .button-container label{
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 15px;
-    font-weight: 500;
-    margin-right: 15px;
     cursor: pointer;
+    display:flex;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 500;
   }
 
-  .selection-bar button img{
+  .selection-bar .button-container button img{
     height: 18px;
+    align-items: center;
   }
 
 input[type="file"]{
   display: none;
 }
 
+/* Responsive Styling Selection bar */
+@media (max-width: 778px) {
+  .selection-bar .button-container {
+    width: 80px;
+  }
+
+  .selection-bar .button-container button {
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .selection-bar .button-container label {
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .selection-bar .button-container button img {
+    height: 12px;
+  }
+}
+
 /* tool-bar */
 .toolbar-section{
-  margin-top: 20px;
+  margin-top: 15px;
+  margin-bottom:20px;
   padding: 0 15px;
   display:flex;
   flex-direction: row;
-  border: 1px solid rgba(60, 64, 67, 0.3);
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
   border-radius: 5px;
   align-items: center;
+  background-color: #F9F9F9;
 }
 
   .tool-container, .tool-shape-container{
@@ -73,11 +115,11 @@ input[type="file"]{
         border: 1px solid #b9b9b9;
       }
         .tool button:hover{
-          background-color: #b9b9b9;
+          background-color: #cacaca;
         }
 
         .tool .active{
-          background-color: #b9b9b9;
+          background-color: #cacaca;
         }
         
         .tool button img{
@@ -150,7 +192,6 @@ input[type="file"]{
   .draw-board{
     border-radius: 5px;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-    margin-top:15px;
     background-color: white;
     flex:1;
   }
