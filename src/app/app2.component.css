@@ -1,0 +1,152 @@
+/* Responsive Styling Selection bar */
+@media (max-width: 778px) {
+  .selection-bar .button-container {
+    width: 80px;
+  }
+
+  .selection-bar .button-container button {
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .selection-bar .button-container label {
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .selection-bar .button-container button img {
+    height: 12px;
+  }
+
+  .main-body{
+    display:flex;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0 5px;
+  }
+
+  .toolbar-section{
+    margin-top: 15px;
+    margin-bottom:20px;
+    padding: 0 10px;
+    display:flex;
+    flex-direction: row;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    border-radius: 5px;
+    align-items: center;
+    background-color: #F9F9F9;
+  }
+  
+    .tool-container, .tool-shape-container{
+      margin: 0 5px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: end;
+    }
+
+    .tool-shape-container{
+      margin: 0 5px;
+      display: flex;
+      flex-direction: column;
+      align-items: end;
+      justify-content: end;
+    }
+  
+      .tool{
+        margin: 4px;
+        display:grid;
+        grid-template-columns: 20px 20px 20px;
+        column-gap: 8px;
+        row-gap: 8px;
+      }
+  
+        .tool button{
+          height: 20px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: transparent;
+          border-radius: 5px;
+          border: 1px solid #b9b9b9;
+          transition: background-color 0.2s ease-in-out;
+        }
+          .tool button:hover{
+            background-color: #cacaca;
+          }
+  
+          .tool .active{
+            background-color: #cacaca;
+          }
+          
+          .tool button img{
+            height: 13px;
+          }
+  
+      .tool-title{
+        margin-bottom: 8px;
+        font-size: 11px;
+        font-weight: bold;
+      }
+  
+    .tool-shape-fill{
+      margin-left: 5px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin-right: 5px;
+    }
+  
+      .tool-shape-fill input{
+        height: 15px;
+      }
+  
+      .tool-shape-fill label{
+        font-size: 10px;
+        font-weight: bold;
+      }
+  
+  
+    .tool-custom{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin: 8px;
+    }  
+  
+      .tool-custom .tool-size-container, .tool-color-container{
+        display:flex;
+        flex-direction: column;
+        padding-bottom: 3px;
+        align-items: center;
+      }  
+  
+        .tool-custom .tool-size-container input{
+          width: 40px;
+          height: 13px;
+          text-align: center;
+          margin-top: 10px;
+          margin-bottom: 10px;
+        }
+  
+        .tool-custom .tool-color-container input{
+          text-align: center;
+        }
+
+        input[type="color"] {
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+          background-color: transparent;
+          width: 40px;
+          height: 40px;
+          border: none;
+          cursor: pointer;
+        }
+
+        input[type="number"]{
+          border: 2px solid #000000;
+          padding-left: 1px;
+          font-size: 11px;
+        }
+}

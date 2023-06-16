@@ -4,7 +4,7 @@ import { AppService } from './service/app/app.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css', './app2.component.css']
 })
 export class AppComponent implements AfterViewInit{
   title = "paint";

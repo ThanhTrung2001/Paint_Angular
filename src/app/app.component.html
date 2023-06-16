@@ -74,14 +74,19 @@
     <div class="tool-container">
       <div class="tool-custom">
         <div class="tool-size-container">
-          <label for="strock-customer">Size</label>
           <input type="number" id="strock-customer" value="1" (change)="changeLineWidth($event)">
         </div>
+      </div>
+      <label class="tool-title" for="strock-customer">Size</label>
+    </div>
+    <div class="divider"></div>
+    <div class="tool-container">
+      <div class="tool-custom">
         <div class="tool-color-container">
-          <label for="color-picker">Color</label>
           <input type="color" id="color-picker" [value]="strokeColor" (change)="changeColor($event)">
         </div>
       </div>
+      <label class="tool-title" for="color-picker">Color</label>
     </div>
      <!-- <div class="tool-container">
       <div class="tool-custom">
