@@ -12,10 +12,34 @@
   opacity: 0.8;
 }
 
+/*scrollbar*/
+/* width */
+::-webkit-scrollbar {
+  height: 5px;
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+  border-radius: 5px; 
+}
+
 /* Responsive Styling Selection bar */
 @media (max-width: 778px) {
   .selection-bar .button-container {
-    width: 80px;
+    width: 40px;
   }
 
   .selection-bar .button-container button {
@@ -36,13 +60,14 @@
     display:flex;
     flex-direction: column;
     height: 100vh;
-    margin: 0 5px;
+    padding: 0 8px;
   }
 
   .toolbar-section{
-    margin-top: 15px;
-    margin-bottom:20px;
-    padding: 0 10px;
+    height: 90px;
+    margin-top: 5px;
+    margin-bottom:5px;
+    padding: 0 3px;
     display:flex;
     flex-direction: row;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
@@ -52,7 +77,7 @@
   }
   
     .tool-container, .tool-shape-container{
-      margin: 0 5px;
+      margin: 0 3px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -81,17 +106,9 @@
           justify-content: center;
           align-items: center;
           background-color: transparent;
+          border:none;
           border-radius: 5px;
-          border: 1px solid #b9b9b9;
-          transition: background-color 0.2s ease-in-out;
         }
-          .tool button:hover{
-            background-color: #cacaca;
-          }
-  
-          .tool .active{
-            background-color: #cacaca;
-          }
           
           .tool button img{
             height: 13px;

@@ -2,7 +2,9 @@
   display:flex;
   flex-direction: column;
   height: 100vh;
-  margin: 0 30px;
+  padding: 0 15px;
+  overflow-y: auto;
+  -ms-overflow-style: none;  /* IE and Edge */
 }
 
 /* selection-bar */
@@ -91,6 +93,7 @@ input[type="number"]{
   max-width: fit-content;
 }
 .toolbar-section{
+  height: 120px;
   margin-top: 15px;
   margin-bottom:20px;
   padding: 0 15px;
@@ -100,6 +103,7 @@ input[type="number"]{
   border-radius: 5px;
   align-items: center;
   background-color: #f9f9f9;
+  overflow-x:auto;
 }
 
   .tool-container{
@@ -231,10 +235,10 @@ input[type="number"]{
 
 /* bottom-section */
 .bottom-section{
-  height: 100x;
   display:flex;
   flex-direction: row;
   margin-top:10px;
+  margin-bottom: 5px;
 }
 
 

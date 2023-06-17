@@ -5,4 +5,9 @@ html{
 
 body{
   background-color: #F8F8F8;
+  -ms-overflow-style: none;  /* IE and Edge */
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }

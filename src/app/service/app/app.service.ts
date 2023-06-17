@@ -197,7 +197,7 @@ export class AppService {
           });
           if(pointOutside == true)
           {
-            this.context.fillStyle = this.strokeColor;
+            this.context.fillStyle = this.fillColor;
             this.context.fillRect(x, y, 1,1);
           }
         }
