@@ -73,7 +73,7 @@ An Paint Web Application using Angular, GithubPage (Deploy), GithubActions & Doc
   <li>Programming Language : TypeScript</li>
   <li>Markup Language : HTML, CSS</li>
   <li>UnitTest : Karmar (JS Tool), Jasmine (JS Framework)</li>
-  <li>JSLib use : AngularCLI-GithubPages( + GithubActions ) for deploy </li>
+  <li>Deploy: AngularCLI-GithubPages + GithubActions</li>
   <li>CICD : Docker + GithubActions</li>
  </ul>
  
