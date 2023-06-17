@@ -9,6 +9,7 @@ import { AppService } from './service/app/app.service';
 export class AppComponent implements AfterViewInit{
   title = "paint";
   strokeColor:string = "#000";
+  fillColor:string = "#ffffff";
   cursorClass:string = "";
   currentTool:string = 'pencil';
   currentShape:string = '';
@@ -25,22 +26,31 @@ export class AppComponent implements AfterViewInit{
     this.redo();
   }
 
+  //select
   @HostListener('document:keydown.control.x', ['$event'])
   pressCtrlX(event: KeyboardEvent) {
     // Add your desired functionality here
     this.cutSelected();
   }
 
-
   @HostListener('document:keydown.control.c', ['$event'])
   pressCtrlC(event: KeyboardEvent) {
     // Add your desired functionality here
     this.copySelected();
   }
+
   @HostListener('document:keydown.control.v', ['$event'])
   pressCtrlV(event: KeyboardEvent) {
     this.pasteSelected();
   }
+
+  @HostListener('document:keydown.delete', ['$event'])
+  pressDelete(event: KeyboardEvent) {
+    // Add your desired functionality here
+    this.deleteSelected();
+  }
+
+
 
 
   constructor(private appService: AppService) {}
@@ -114,6 +124,13 @@ export class AppComponent implements AfterViewInit{
   changeColor(event: any){
     this.appService.changecolor(event.target.value);
   }
+
+  //color
+  changeFillColor(event: any){
+    this.appService.changeFillcolor(event.target.value);
+  }
+
+
 
   //lineWidth
   changeLineWidth(event: any){
@@ -189,6 +206,10 @@ export class AppComponent implements AfterViewInit{
 
   pasteSelected(){
     this.appService.pasteSelected();
+  }
+
+  deleteSelected(){
+    this.appService.deleteSelected();
   }
 
 }

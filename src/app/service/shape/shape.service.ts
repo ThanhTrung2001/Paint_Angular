@@ -29,6 +29,8 @@ export class ShapeService {
   public existSelected:boolean = false;
   public snapshotSelected:any;
   public snapshotCopy:any;
+  public isDeleteSnapshot:boolean = false;
+  public oldSelectedRect:SelectedRect = {x:0,y:0,w:0,h:0};
 
 
 
@@ -42,7 +44,9 @@ export class ShapeService {
   }
 
   //draw shape
-  drawShape(offsetX: number, offsetY:number){
+  drawShape(offsetX: number, offsetY:number, strokeColor:string, fillColor:string){
+    this.context.strokeStyle = strokeColor;
+    this.context.fillStyle = fillColor;
     switch(this.shape)
       {
         case this.isRectangle:
@@ -171,6 +175,7 @@ export class ShapeService {
   //selectArea
   selectArea(){
     this.selectedRect = {x:this.lastX, y:this.lastY, w:this.width, h:this.height};
+    this.oldSelectedRect = this.selectedRect;
     this.snapshotSelected = this.context.getImageData(this.selectedRect.x, this.selectedRect.y, this.selectedRect.w, this.selectedRect.h);
     this.context.rect(this.lastX, this.lastY,this.width, this.height);
     this.context.setLineDash([5, 5]);

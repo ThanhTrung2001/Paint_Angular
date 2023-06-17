@@ -21,11 +21,10 @@ export class AppService {
   public offsetY: number = 0;
   //stroke & line width
   public strokeColor: string = "#000";
+  public fillColor:string = "#fff";
   public lineWidth: number = 1;
   //snapshot for shape draw
   private snapshot: any;
-  //zoom
-  private zoomScale: number = 1;
   //rotate or flip
   private rotateDegree:number = 0;
   private flipHorizontal:boolean = false;
@@ -96,7 +95,8 @@ export class AppService {
     this.context.lineJoin = 'miter';
     this.context.lineCap = 'round';
     this.context.lineWidth = this.lineWidth;
-    this.context.fillStyle = this.strokeColor;
+    this.context.strokeStyle = this.strokeColor;
+    this.context.fillStyle = this.fillColor;
     //start drawing path
     this.context.beginPath();
     //start draw line
@@ -104,7 +104,7 @@ export class AppService {
     {
       //when draw shape -> load snapshot when start draw to make sure all afterimage will be removed
       this.context.putImageData(this.snapshot, 0 , 0); 
-      this.shapeService.drawShape(this.offsetX, this.offsetY);
+      this.shapeService.drawShape(this.offsetX, this.offsetY, this.strokeColor, this.fillColor);
     }
     else if(this.toolService.selectedTool == this.toolService.isSelectArea)
     {
@@ -226,6 +226,10 @@ export class AppService {
   //color 
   changecolor(color: string){
     this.strokeColor = color;
+  }
+  //fillcolor 
+  changeFillcolor(color: string){
+    this.fillColor = color;
   }
   //stroke line width
   changeLineWidth(width: number){
@@ -353,9 +357,13 @@ export class AppService {
   copySelected(){
     if(!this.isDrawing && this.shapeService.snapshotSelected != null && this.shapeService.existSelected == true)
     {
-      this.shapeService.snapshotCopy = this.shapeService.snapshotSelected;
-      this.snapshotService.clearSnapshotHistoryOnly();
-      this.shapeService.existSelected= false;
+      if(this.shapeService.isDeleteSnapshot == false)
+      {
+        this.shapeService.snapshotCopy = this.shapeService.snapshotSelected;
+        this.snapshotService.clearSnapshotHistoryOnly();
+        this.shapeService.existSelected= false;
+      }
+      
     }
   }
 
@@ -363,7 +371,7 @@ export class AppService {
     if(!this.isDrawing && this.shapeService.snapshotSelected != null && this.shapeService.existSelected == true)
     {
       this.shapeService.snapshotCopy = this.shapeService.snapshotSelected;
-      this.snapshotService.clearSnapshotHistoryOnly();
+      this.snapshotService.rollback();
       this.shapeService.cutSelectArea();
       this.shapeService.existSelected= false;
     }
@@ -375,6 +383,17 @@ export class AppService {
       this.context.beginPath();
       this.context.putImageData(this.shapeService.snapshotCopy, this.offsetX - this.shapeService.selectedRect.w/2, this.offsetY - this.shapeService.selectedRect.h/2);
       this.snapshotService.saveSnapshot();
+    }
+  }
+
+  deleteSelected(){
+    if(!this.isDrawing && this.shapeService.snapshotSelected != null)
+    {
+      this.shapeService.snapshotCopy = null;
+      this.snapshotService.clearSnapshotHistoryOnly();
+      this.shapeService.cutSelectArea();
+      this.snapshotService.saveSnapshot();
+      this.shapeService.isDeleteSnapshot = true;
     }
   }
 }

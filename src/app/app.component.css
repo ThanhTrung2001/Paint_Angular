@@ -86,6 +86,10 @@ input[type="number"]{
 
 
 /* tool-bar */
+.toolbar-container{
+  display: inline-block;
+  max-width: fit-content;
+}
 .toolbar-section{
   margin-top: 15px;
   margin-bottom:20px;
@@ -133,7 +137,7 @@ input[type="number"]{
         transition: background-color 0.2s ease-in-out;
       }
         .tool button:hover{
-          background-color: #dfdfdf;
+          background-color: #ccdefa;
           .tooltiptext{
           display:block;
         }
@@ -144,12 +148,12 @@ input[type="number"]{
         }
 
         .tool .active{
-          background-color: #dfdfdf;
+          background-color: #ccdefa;
           border: 2px solid #000000;
         }
         
         .tool button img{
-          height: 20px;
+          height: 18px;
         }
 
     .tool-title{
