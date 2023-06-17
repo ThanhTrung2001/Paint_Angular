@@ -17,8 +17,8 @@ export class AppService {
   public context!: CanvasRenderingContext2D;
   //for drawing
   public isDrawing: boolean = false;
-  private offsetX: number = 0;
-  private offsetY: number = 0;
+  public offsetX: number = 0;
+  public offsetY: number = 0;
   //stroke & line width
   public strokeColor: string = "#000";
   public lineWidth: number = 1;
@@ -69,14 +69,17 @@ export class AppService {
   }
 
   //Drawing, get current mouse position eachtime and connect old point to new point
-  draw(event: MouseEvent) {
-    if (!this.isDrawing) return;
+  draw(event: MouseEvent, handle:string) {
+    //get mouse position when move for drawing = true and false
     const canvasRect = this.context.canvas.getBoundingClientRect();
     //get the current mouse coordinates
     const scaleX = this.context.canvas.width / canvasRect.width;
     const scaleY = this.context.canvas.height / canvasRect.height;
     this.offsetX = (event.clientX - canvasRect.left) * scaleX;
     this.offsetY = (event.clientY - canvasRect.top) * scaleY;
+    if (!this.isDrawing) {
+      return;
+    }
     //this is for shape
     //1.rectangle width & height
     this.shapeService.width = this.offsetX - this.shapeService.lastX;
@@ -333,20 +336,45 @@ export class AppService {
 
   //rotate function
   rotate(rotateDegree: number){
-
+    this.rotateDegree += rotateDegree;
+    const radians = rotateDegree * (Math.PI / 180);
+    this.context.save();
+    this.context.translate(this.context.canvas.width/2, this.context.canvas.height/2);
+    this.context.rotate(radians);
+    this.context.drawImage(this.context.canvas, -this.context.canvas.width / 2, -this.context.canvas.height / 2);
+    this.context.restore();
+    this.snapshotService.saveRotateState(rotateDegree);
   }
 
   //flip function
-  flip(isHorizon:boolean){
-
+  flip(isHorizontal:boolean, isVertical:boolean){
   }
 
-  //deselect Area 
-  deselectArea(){
-    if(this.context.isPointInPath(this.offsetX, this.offsetY) == false)
+  copySelected(){
+    if(!this.isDrawing && this.shapeService.snapshotSelected != null && this.shapeService.existSelected == true)
     {
+      this.shapeService.snapshotCopy = this.shapeService.snapshotSelected;
       this.snapshotService.clearSnapshotHistoryOnly();
-      this.shapeService.selectedRect = {x:0,y:0,w:0,h:0};
+      this.shapeService.existSelected= false;
+    }
+  }
+
+  cutSelected(){
+    if(!this.isDrawing && this.shapeService.snapshotSelected != null && this.shapeService.existSelected == true)
+    {
+      this.shapeService.snapshotCopy = this.shapeService.snapshotSelected;
+      this.snapshotService.clearSnapshotHistoryOnly();
+      this.shapeService.cutSelectArea();
+      this.shapeService.existSelected= false;
+    }
+  }
+
+  pasteSelected(){
+    if(!this.isDrawing && this.shapeService.snapshotCopy != null)
+    {
+      this.context.beginPath();
+      this.context.putImageData(this.shapeService.snapshotCopy, this.offsetX - this.shapeService.selectedRect.w/2, this.offsetY - this.shapeService.selectedRect.h/2);
+      this.snapshotService.saveSnapshot();
     }
   }
 }

@@ -104,19 +104,19 @@
           <img src="assets/icons/select.png" alt="">
           <span class="tooltiptext">Select</span>
         </button>
-        <button type="button" (click)="useTool('eraser')">
+        <button type="button" (click)="rotate(-90)">
           <img src="assets/icons/rotate.png" alt="">
-          <span class="tooltiptext">Rotate right 90</span>
-        </button>
-        <button type="button" (click)="useTool('ink')">
-          <img style="transform: scaleX(-1);" src="assets/icons/rotate.png" alt="">
           <span class="tooltiptext">Rotate left 90</span>
         </button>
-        <button type="button" (click)="useTool('text')">
+        <button type="button" (click)="rotate(90)">
+          <img style="transform: scaleX(-1);" src="assets/icons/rotate.png" alt="">
+          <span class="tooltiptext">Rotate right 90</span>
+        </button>
+        <button type="button" (click)="flip(true, false)">
           <img src="assets/icons/flip_horizontal.png" alt="">
           <span class="tooltiptext">Flip horizontal</span>
         </button>
-        <button type="button" (click)="useTool('eyedropper')">
+        <button type="button" (click)="flip(false, true)">
           <img src="assets/icons/flip_vertical.png" alt="">
           <span class="tooltiptext">Flip vertical</span>
         </button>
@@ -131,8 +131,7 @@
     </canvas>
   </section>
   <section class="bottom-section">
-    <div class="current-tool">Current tool :</div>
-    <div class="mouse-coordinates">Mouse Coordinates</div>
+    <div class="current-tool">Current mouse position : {{currentMouseX}} - {{currentMouseY}} </div>
   </section>
 </div>
 <router-outlet></router-outlet>

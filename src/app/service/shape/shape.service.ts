@@ -27,6 +27,8 @@ export class ShapeService {
   //select area
   public selectedRect:SelectedRect = {x:0,y:0,w:0,h:0};
   public existSelected:boolean = false;
+  public snapshotSelected:any;
+  public snapshotCopy:any;
 
 
 
@@ -168,12 +170,20 @@ export class ShapeService {
 
   //selectArea
   selectArea(){
+    this.selectedRect = {x:this.lastX, y:this.lastY, w:this.width, h:this.height};
+    this.snapshotSelected = this.context.getImageData(this.selectedRect.x, this.selectedRect.y, this.selectedRect.w, this.selectedRect.h);
     this.context.rect(this.lastX, this.lastY,this.width, this.height);
     this.context.setLineDash([5, 5]);
     this.context.stroke();
     this.context.setLineDash([]);
-    this.selectedRect = {x:this.lastX, y:this.lastY, w:this.width, h:this.height};
     this.existSelected = true;
+  }
+
+  cutSelectArea(){
+      this.context.rect(this.selectedRect.x, this.selectedRect.y,this.selectedRect.w, this.selectedRect.h);
+      this.context.fillStyle = '#ffffff';
+      this.context.lineWidth = 0;
+      this.context.fill();
   }
 
 }

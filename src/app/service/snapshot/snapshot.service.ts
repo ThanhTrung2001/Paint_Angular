@@ -8,6 +8,10 @@ export class SnapshotService {
   //snapshot saving array
   public snapshotHistory: ImageData[] = [];
   public snapshotRedo: ImageData[] = [];
+  //rotate saving array
+  public rotateHistory: number[] = [];
+  public rotateRedo: number[] = [];
+  public rotateDegree:number = 0;
 
   //rollback
   rollback(){
@@ -71,6 +75,38 @@ export class SnapshotService {
           // If there are no more snapshots, clear the canvas
           this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height);
         }
+      }
+    }
+  }
+
+
+
+  //rotate
+  saveRotateState(rotateDegree:number){
+    this.rotateDegree = rotateDegree;
+    this.rotateHistory.push(rotateDegree);
+  }
+
+  rollbackRotate(){
+    if (this.rotateHistory.length > 0) {
+      // Pop the last rotation angle from the history array
+      const previousRotateDegree = this.rotateHistory.pop();
+      if(previousRotateDegree)
+      {
+        this.rotateRedo.push(previousRotateDegree);
+        this.rotateDegree = previousRotateDegree;
+      }
+    }
+  }
+
+  redoRotate(){
+    if (this.rotateRedo.length > 0) {
+      // Pop the last rotation angle from the history array
+      const reRotateDegree = this.rotateRedo.pop();
+      if(reRotateDegree)
+      {
+        this.rotateHistory.push(reRotateDegree);
+        this.rotateDegree = reRotateDegree;
       }
     }
   }

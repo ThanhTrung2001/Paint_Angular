@@ -12,6 +12,8 @@ export class AppComponent implements AfterViewInit{
   cursorClass:string = "";
   currentTool:string = 'pencil';
   currentShape:string = '';
+  currentMouseX:number = 0;
+  currentMouseY:number = 0;
   @ViewChild('paintCanvas', { static: true }) canvas!: ElementRef<HTMLCanvasElement>;
   @HostListener('document:keydown.control.z', ['$event'])
   pressCtrlZ(event: KeyboardEvent) {
@@ -21,6 +23,23 @@ export class AppComponent implements AfterViewInit{
   @HostListener('document:keydown.control.y', ['$event'])
   pressCtrlY(event: KeyboardEvent) {
     this.redo();
+  }
+
+  @HostListener('document:keydown.control.x', ['$event'])
+  pressCtrlX(event: KeyboardEvent) {
+    // Add your desired functionality here
+    this.cutSelected();
+  }
+
+
+  @HostListener('document:keydown.control.c', ['$event'])
+  pressCtrlC(event: KeyboardEvent) {
+    // Add your desired functionality here
+    this.copySelected();
+  }
+  @HostListener('document:keydown.control.v', ['$event'])
+  pressCtrlV(event: KeyboardEvent) {
+    this.pasteSelected();
   }
 
 
@@ -50,7 +69,9 @@ export class AppComponent implements AfterViewInit{
   }
 
   draw(event: MouseEvent) {
-    this.appService.draw(event);
+    this.appService.draw(event, '');
+    this.currentMouseX = this.appService.offsetX;
+    this.currentMouseY = this.appService.offsetY;
   }
 
   stopDrawing() {
@@ -59,6 +80,8 @@ export class AppComponent implements AfterViewInit{
 
   outRangeDraw() {
     this.appService.outRange();
+    this.currentMouseX = 0;
+    this.currentMouseY = 0;
   }
 
   inkOrEyedrop(event:MouseEvent){
@@ -146,9 +169,26 @@ export class AppComponent implements AfterViewInit{
     this.appService.loadImage(event);
   }
 
-  //deselect area
-  deselectArea(){
-    this.appService.deselectArea();
+  //rotate
+  rotate(rotateDegree:number){
+    this.appService.rotate(rotateDegree);
+  }
+
+  //flip
+  flip(isHorizontal:boolean, isVertical:boolean){
+    this.appService.flip(isHorizontal, isVertical);
+  }
+
+  copySelected(){
+    this.appService.copySelected();
+  }
+
+  cutSelected(){
+    this.appService.cutSelected();
+  }
+
+  pasteSelected(){
+    this.appService.pasteSelected();
   }
 
 }
