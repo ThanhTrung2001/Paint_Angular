@@ -53,7 +53,10 @@ An Paint Web Application using Angular, GithubPage (Deploy), GithubActions & Doc
 <li>Rotate & Flip tool (not done)</li>
 </ul>
 
-### 1.6 Combind key
+### 1.6 Mouse Coordinates
+![image](https://github.com/ThanhTrung2001/Paint_Angular/assets/75150646/15e04f22-6269-41b2-80af-de6d686ec774)
+
+### 1.7 Combind key
 <ul>
 <li>Ctrl + x : cut selected area</li>
 <li>Ctrl + c : copy selected are</li>
