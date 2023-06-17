@@ -192,10 +192,15 @@ export class AppComponent implements AfterViewInit{
   }
 
   //flip
-  flip(isHorizontal:boolean, isVertical:boolean){
-    this.appService.flip(isHorizontal, isVertical);
+  flipHorizontal(){
+    this.appService.flipHorizontal();
   }
 
+  flipVertical(){
+    this.appService.flipVertical();
+  }
+
+  //area
   copySelected(){
     this.appService.copySelected();
   }

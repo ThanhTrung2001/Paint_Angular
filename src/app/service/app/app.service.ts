@@ -27,14 +27,21 @@ export class AppService {
   private snapshot: any;
   //rotate or flip
   private rotateDegree:number = 0;
-  private flipHorizontal:boolean = false;
-  private flipVertical:boolean = false;
+  private isFlipHorizontal:boolean = false;
+  private isFlipVertical:boolean = false;
+  private tempCanvas:any;
+  private tempContext:any;
 
   //set context for canvas
   setContext(context: CanvasRenderingContext2D) {
     this.context = context;
     this.snapshotService.context = this.context;
     this.shapeService.context = this.context;
+    //
+    this.tempCanvas = document.createElement('canvas');
+    this.tempContext = this.tempCanvas.getContext('2d');
+    this.tempCanvas.width = this.context.canvas.width;
+    this.tempCanvas.height = this.context.canvas.height;
   }
 
   getContext(){
@@ -59,8 +66,8 @@ export class AppService {
     const scaleY = this.context.canvas.height / canvasRect.height;
     this.offsetX = (event.clientX - canvasRect.left) * scaleX;
     this.offsetY = (event.clientY - canvasRect.top) * scaleY;
-    this.shapeService.lastX = this.offsetX;
-    this.shapeService.lastY = this.offsetY;
+    this.shapeService.lastX =this.isFlipHorizontal? this.context.canvas.width - this.offsetX : this.offsetX;
+    this.shapeService.lastY =this.isFlipVertical? this.context.canvas.height -this.offsetY : this.offsetY;
     this.shapeService.width = 0;
     this.shapeService.height = 0;
     //create snapshot to load every time draw shape to delete afterimage
@@ -74,8 +81,8 @@ export class AppService {
     //get the current mouse coordinates
     const scaleX = this.context.canvas.width / canvasRect.width;
     const scaleY = this.context.canvas.height / canvasRect.height;
-    this.offsetX = (event.clientX - canvasRect.left) * scaleX;
-    this.offsetY = (event.clientY - canvasRect.top) * scaleY;
+    this.offsetX = this.isFlipHorizontal? this.context.canvas.width - ((event.clientX - canvasRect.left) * scaleX) : (event.clientX - canvasRect.left);
+    this.offsetY = this.isFlipVertical? this.context.canvas.height - ((event.clientY - canvasRect.top) * scaleY) : (event.clientY - canvasRect.top);
     if (!this.isDrawing) {
       return;
     }
@@ -137,6 +144,7 @@ export class AppService {
 
   //stop Drawing
   stopDrawing() {
+    // this.tempContext.drawImage(this.context.canvas, 0, 0);
     this.snapshotService.saveSnapshot();
     if(this.shapeService.shape != '')
     {
@@ -341,19 +349,65 @@ export class AppService {
   //rotate function
   rotate(rotateDegree: number){
     this.rotateDegree += rotateDegree;
+    if(this.rotateDegree == 360 || this.rotateDegree == -360) {
+      this.rotateDegree = 0;
+    }
+    if(this.rotateDegree % 360 == 0 )
+    {
+
+    }
+    else if(this.rotateDegree % 180 == 0 )
+    {
+
+    }
+    else{
+
+    }
     const radians = rotateDegree * (Math.PI / 180);
+    this.tempContext.drawImage(this.context.canvas, 0, 0);
+    this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height);
     this.context.save();
     this.context.translate(this.context.canvas.width/2, this.context.canvas.height/2);
     this.context.rotate(radians);
-    this.context.drawImage(this.context.canvas, -this.context.canvas.width / 2, -this.context.canvas.height / 2);
+    this.context.drawImage(this.tempContext.canvas, -this.context.canvas.width / 2, -this.context.canvas.height / 2);
     this.context.restore();
-    this.snapshotService.saveRotateState(rotateDegree);
+    
   }
 
-  //flip function
-  flip(isHorizontal:boolean, isVertical:boolean){
+  //flip
+  flipHorizontal(){
+    this.tempContext.drawImage(this.context.canvas, 0, 0);
+    // this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height);
+    if(this.isFlipHorizontal == false)
+    {
+      this.isFlipHorizontal = true;
+    }
+    else{
+      this.isFlipHorizontal = false;
+    }
+    this.context.translate(this.context.canvas.width, 0);
+    this.context.scale(-1, 1);
+    this.context.drawImage(this.tempContext.canvas, 0, 0);
+    this.snapshotService.saveSnapshot();
   }
 
+  flipVertical(){
+    this.tempContext.drawImage(this.context.canvas, 0, 0);
+    this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height);
+    if(this.isFlipVertical == false)
+    {
+      this.isFlipVertical = true;
+    }
+    else{
+      this.isFlipVertical = false;
+    }
+    this.context.translate(0, this.context.canvas.height);
+    this.context.scale(1, -1);
+    this.context.drawImage(this.tempContext.canvas, 0, 0);
+    this.snapshotService.saveSnapshot();
+  }
+
+  //area
   copySelected(){
     if(!this.isDrawing && this.shapeService.snapshotSelected != null && this.shapeService.existSelected == true)
     {
