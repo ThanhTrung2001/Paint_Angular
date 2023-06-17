@@ -6,7 +6,7 @@ An Paint Web Application using Angular, GithubPage (Deploy), GithubActions & Doc
 ## 1 FUNCTION
 
 ### 1.1 Selection bar
-![image](https://github.com/ThanhTrung2001/Paint_Angular/assets/75150646/6153ca27-2dc4-4981-b6cf-e88a576e6730)
+![image](https://github.com/ThanhTrung2001/Paint_Angular/assets/75150646/b9f16361-e1eb-4355-8d8a-ffd1a3bf6bbc)
 <ul>
 <li>Open(Load Image from PC)</li>
 <li>Save(Download to PC)</li>
@@ -16,7 +16,7 @@ An Paint Web Application using Angular, GithubPage (Deploy), GithubActions & Doc
 </ul>
 
 ### 1.2 Tool
-![image](https://github.com/ThanhTrung2001/Paint_Angular/assets/75150646/4e735752-621c-4102-8f87-6e6f654983d7)
+![image](https://github.com/ThanhTrung2001/Paint_Angular/assets/75150646/b5f8c51e-48a1-496f-8fdf-b3551e3dae8c)
 
 <ul>
 <li>Pencil(Normal Draw)</li>
@@ -27,7 +27,7 @@ An Paint Web Application using Angular, GithubPage (Deploy), GithubActions & Doc
 </ul>
 
 ### 1.3 Shape
-![image](https://github.com/ThanhTrung2001/Paint_Angular/assets/75150646/12a2fe2e-833e-4a4e-9cac-1f7e54776e8b)
+![image](https://github.com/ThanhTrung2001/Paint_Angular/assets/75150646/6a1f56cb-519e-41dd-9d1d-4f0fbd506131)
 
 <ul>
 <li>Rectangle</li>
@@ -38,11 +38,28 @@ An Paint Web Application using Angular, GithubPage (Deploy), GithubActions & Doc
 </ul>
 
 ### 1.4 Custom
-![image](https://github.com/ThanhTrung2001/Paint_Angular/assets/75150646/802a229e-002c-4d61-bf76-7cde5a4e55ef)
+![image](https://github.com/ThanhTrung2001/Paint_Angular/assets/75150646/37142532-00b6-48c1-b249-be41c24a2e4f)
 
 <ul>
 <li>Line width cutom</li>
 <li>Color custom</li>
+</ul>
+
+### 1.5 Advanced
+![image](https://github.com/ThanhTrung2001/Paint_Angular/assets/75150646/24c17536-e9b3-44dc-9e0b-554ce23dcae9)
+
+<ul>
+<li>Selected Tool</li>
+<li>Rotate & Flip tool (not done)</li>
+</ul>
+
+### 1.6 Combind key
+<ul>
+<li>Ctrl + x : cut selected area</li>
+<li>Ctrl + c : copy selected are</li>
+<li>Ctrl + v : paste copy/cut selected area</li>
+<li>Ctrl + z : undo</li>
+<li>Ctrl + y : redo</li>
 </ul>
 
 ## 2 LIBRARY & TECHNOLOGY
@@ -52,9 +69,9 @@ An Paint Web Application using Angular, GithubPage (Deploy), GithubActions & Doc
   <li>Running : Normal / GithubPage </li>
   <li>Programming Language : TypeScript</li>
   <li>Markup Language : HTML, CSS</li>
-  <li>Diagram : Draw.io</li>
   <li>UnitTest : Karmar (JS Tool), Jasmine (JS Framework)</li>
-  <li>Some Techniques use : GithubPage - Deploy, GithubAction + Docker - CICD</li>
+  <li>JSLib use : AngularCLI-GithubPages( + GithubActions ) for deploy </li>
+  <li>CICD : Docker + GithubActions</li>
  </ul>
  
 ## 3 DIAGRAM
@@ -70,17 +87,11 @@ An Paint Web Application using Angular, GithubPage (Deploy), GithubActions & Doc
 </ul>
 
 ## 4 SCREENSHOT
+<ul>
+  <li>Main</li>
+    <img width="700" height="500" src=https://github.com/ThanhTrung2001/Paint_Angular/assets/75150646/3ece0442-2dff-4e7f-b9a9-ddf5ef2b134d>
+    <img width="700" height="500" src=https://github.com/ThanhTrung2001/Paint_Angular/assets/75150646/5fb2c59c-9a98-4e64-af3a-8069098035cc>
+  <li>Select Tool</li>
+    <img width="700" height="500" src=https://github.com/ThanhTrung2001/Paint_Angular/assets/75150646/01d09f8a-341f-421e-9620-8260454436f9>
+</ul>
 
-<!-- <ul>
-  <li>Login/SignUp</li>
-    <img width="700" height="500" src=https://github.com/ThanhTrung2001/OnlineBookShop/assets/75150646/688088ac-71b7-4c40-93b7-59b668203d7d>
-    <img width="700" height="500" src=https://github.com/ThanhTrung2001/OnlineBookShop/assets/75150646/9386fb86-961a-4328-a850-c8d72599cdf9>
-  <li>Profile</li>
-    <img width="700" height="500" src=https://github.com/ThanhTrung2001/OnlineBookShop/assets/75150646/ef772ade-876e-4ac5-8f81-92ca47eb80d7>
-    <img width="700" height="500" src=https://github.com/ThanhTrung2001/OnlineBookShop/assets/75150646/ba3ba7cd-8ad9-4d1d-869b-32767d681502>
-    <img width="700" height="500" src=https://github.com/ThanhTrung2001/OnlineBookShop/assets/75150646/d1cd4345-ba96-4d26-9a7e-05b00f15b9a5>
-    <img width="700" height="500" src=https://github.com/ThanhTrung2001/OnlineBookShop/assets/75150646/b6a0e5a5-e9a2-48c3-b752-a44d3b7b5869>
-  <li>Cart</li>
-    <img width="700" height="500" src=https://github.com/ThanhTrung2001/OnlineBookShop/assets/75150646/290c46b7-48ac-4779-854d-0b1d484e7e61>
-    <img width="700" height="500" src=https://github.com/ThanhTrung2001/OnlineBookShop/assets/75150646/9159388f-c7dd-4446-9a07-4eb948b472d2>
-</ul> -->
