@@ -98,9 +98,9 @@
       <label class="tool-title" for="color-picker">Color</label>
     </div>
     <div class="divider"></div>
-    <!-- <div class="tool-container">
+    <div class="tool-container">
       <div class="tool">
-        <button type="button" [class.active]="currentTool === 'selectArea'" (click)="useTool('selectedTool')">
+        <button type="button" [class.active]="currentTool === 'selectArea'" (click)="useTool('selectArea')">
           <img src="assets/icons/select.png" alt="">
           <span class="tooltiptext">Select</span>
         </button>
@@ -122,9 +122,9 @@
         </button>
       </div>
       <div class="tool-title">
-        Advanced Tool
+        Advanced
       </div>
-    </div> -->
+    </div>
   </section>
   <section class="draw-section">
     <canvas #paintCanvas [class]="cursorClass" class="draw-board" (mousedown)="startDrawing($event)" (mousemove)="draw($event)" (mouseup)="stopDrawing()" (mouseout)="outRangeDraw()" (click)="inkOrEyedrop($event)">

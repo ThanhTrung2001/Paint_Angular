@@ -104,6 +104,7 @@ export class AppComponent implements AfterViewInit{
 
   //pencil
   useTool(tool: string){ 
+
     this.appService.useTool(tool);
     this.currentTool = tool;
     this.currentShape = '';
@@ -143,6 +144,11 @@ export class AppComponent implements AfterViewInit{
   //Load
   loadImage(event: any){
     this.appService.loadImage(event);
+  }
+
+  //deselect area
+  deselectArea(){
+    this.appService.deselectArea();
   }
 
 }

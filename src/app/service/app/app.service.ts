@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ShapeService } from '../shape/shape.service';
 import { ToolService } from '../tool/tool.service';
 import { SnapshotService } from '../snapshot/snapshot.service';
+import { SelectedRect } from 'src/app/model/selectedRect';
 
 @Injectable({
   providedIn: 'root'
@@ -48,6 +49,11 @@ export class AppService {
   //Start draw, get the current position when mouse down
   startDrawing(event: MouseEvent) {
     this.changeDrawState(true)
+    if(this.shapeService.existSelected == true)
+    {
+      this.snapshotService.clearSnapshotHistoryOnly();
+      this.shapeService.existSelected = false;
+    }
     //config to get the right mouse position if change resolution when draw
     const canvasRect = this.context.canvas.getBoundingClientRect();
     const scaleX = this.context.canvas.width / canvasRect.width;
@@ -100,7 +106,8 @@ export class AppService {
     else if(this.toolService.selectedTool == this.toolService.isSelectArea)
     {
       this.context.putImageData(this.snapshot, 0 , 0); 
-      this.toolService.selectArea(this.offsetX, this.offsetY);
+      this.shapeService.selectArea();
+      this.shapeService.existSelected = true;
     }
     else if(this.toolService.selectedTool == this.toolService.isEyeDropper)
     {
@@ -334,8 +341,12 @@ export class AppService {
 
   }
 
-  //select function
-  selectArea(){
-
+  //deselect Area 
+  deselectArea(){
+    if(this.context.isPointInPath(this.offsetX, this.offsetY) == false)
+    {
+      this.snapshotService.clearSnapshotHistoryOnly();
+      this.shapeService.selectedRect = {x:0,y:0,w:0,h:0};
+    }
   }
 }

@@ -13,7 +13,8 @@ export class ToolService {
   public isText: string = 'text';
   public isSelectArea: string = 'selectArea';
   //select area
-  
+  private startX: number = 0;
+  private startY: number = 0;
 
   useTool(tool: string){
     this.selectedTool = tool;
@@ -28,10 +29,6 @@ export class ToolService {
       return hex.length === 1 ? "0" + hex : hex;
     };
     return `#${componentToHex(r)}${componentToHex(g)}${componentToHex(b)}`;
-  }
-
-  selectArea(offsetX:number, offsetY:number){
-
   }
   
 }

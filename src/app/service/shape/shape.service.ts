@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { SelectedRect } from 'src/app/model/selectedRect';
 import { Shape } from 'src/app/model/shape';
 
 @Injectable({
@@ -23,7 +24,12 @@ export class ShapeService {
   //shape array to check for fill color
   public shapes: Shape[] = [];
   public shapeItem = new Path2D();
-  //shape
+  //select area
+  public selectedRect:SelectedRect = {x:0,y:0,w:0,h:0};
+  public existSelected:boolean = false;
+
+
+
   setShape(shape:string){
     this.shape = shape;
   }
@@ -50,6 +56,7 @@ export class ShapeService {
           this.lineDraw(offsetX, offsetY);
           break;
         default:
+          this.selectArea();
           break;
       }
       this.context.stroke();
@@ -157,6 +164,16 @@ export class ShapeService {
   //add shape
   addShape(item:Shape){
     this.shapes.push(item);
+  }
+
+  //selectArea
+  selectArea(){
+    this.context.rect(this.lastX, this.lastY,this.width, this.height);
+    this.context.setLineDash([5, 5]);
+    this.context.stroke();
+    this.context.setLineDash([]);
+    this.selectedRect = {x:this.lastX, y:this.lastY, w:this.width, h:this.height};
+    this.existSelected = true;
   }
 
 }

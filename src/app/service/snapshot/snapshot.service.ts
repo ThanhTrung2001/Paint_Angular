@@ -49,11 +49,30 @@ export class SnapshotService {
     const canvasRect = this.context.canvas.getBoundingClientRect();
     const snapshotItem = this.context.getImageData(0, 0, canvasRect.width, canvasRect.height);
     this.snapshotHistory.push(snapshotItem);
+    console.log(this.snapshotHistory);
+    console.log(this.snapshotRedo);
   }
 
   //clear snapshot if tool:select is use
-  clearSnapshotInHistory(){
-    this.snapshotHistory.pop();
+  clearSnapshotHistoryOnly(){
+    console.log("clear");
+    if (this.snapshotHistory.length > 0) {
+      const latestSnapshot = this.snapshotHistory.pop(); //remove newest snapshot and ready to load closest snapshot 
+      if(latestSnapshot)
+      {
+        // this.snapshotRedo.push(latestSnapshot);
+        if (this.snapshotHistory.length > 0) 
+        {
+          const closestSnapshot = this.snapshotHistory[this.snapshotHistory.length - 1];
+          this.context.putImageData(closestSnapshot, 0, 0); // Load the closest snapshot
+        } 
+        else 
+        {
+          // If there are no more snapshots, clear the canvas
+          this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height);
+        }
+      }
+    }
   }
 
 

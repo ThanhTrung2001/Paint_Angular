@@ -128,15 +128,15 @@ input[type="number"]{
         justify-content: center;
         align-items: center;
         background-color: transparent;
+        border: none;
         border-radius: 5px;
-        border: 1px solid #b9b9b9;
         transition: background-color 0.2s ease-in-out;
       }
         .tool button:hover{
-          background-color: #cacaca;
+          background-color: #dfdfdf;
           .tooltiptext{
-            display:block;
-          }
+          display:block;
+        }
         }
 
         .tool button:hover .tooltiptext{
@@ -144,7 +144,8 @@ input[type="number"]{
         }
 
         .tool .active{
-          background-color: #cacaca;
+          background-color: #dfdfdf;
+          border: 2px solid #000000;
         }
         
         .tool button img{
