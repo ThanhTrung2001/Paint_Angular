@@ -31,6 +31,9 @@ export class AppService {
   private isFlipVertical:boolean = false;
   private tempCanvas:any;
   private tempContext:any;
+  //text
+  private text:string = '';
+  private isTexting:boolean = false;
 
   //set context for canvas
   setContext(context: CanvasRenderingContext2D) {
@@ -54,6 +57,23 @@ export class AppService {
 
   //Start draw, get the current position when mouse down
   startDrawing(event: MouseEvent) {
+    if(this.toolService.selectedTool == this.toolService.isText)
+    {
+      this.isTexting == true;
+      if(this.text != '')
+      {
+        this.snapshotService.saveSnapshot();
+        this.text = '';
+      }
+    }
+    else{
+      if(this.isTexting == true)
+      {
+        this.isTexting = false;
+        this.snapshotService.saveSnapshot();
+        this.text = '';
+      }
+    }
     this.changeDrawState(true)
     if(this.shapeService.existSelected == true)
     {
@@ -131,7 +151,7 @@ export class AppService {
     {
       if (this.toolService.selectedTool == this.toolService.isText)
       {
-
+        console.log()
       }
       else {
         this.shapeService.normalDraw(this.offsetX, this.offsetY);
@@ -145,6 +165,10 @@ export class AppService {
   //stop Drawing
   stopDrawing() {
     // this.tempContext.drawImage(this.context.canvas, 0, 0);
+    if(this.toolService.selectedTool == this.toolService.isText)
+    {
+      return;
+    }
     this.snapshotService.saveSnapshot();
     if(this.shapeService.shape != '')
     {
@@ -448,6 +472,31 @@ export class AppService {
       this.shapeService.cutSelectArea();
       this.snapshotService.saveSnapshot();
       this.shapeService.isDeleteSnapshot = true;
+    }
+  }
+
+  //draw Text
+  drawText(event:KeyboardEvent){
+    this.context.putImageData(this.snapshot, 0 , 0);
+    if(this.toolService.selectedTool == this.toolService.isText)
+    {
+      if(event.key == 'Backspace')
+      {
+        this.text = this.text.substring(0, this.text.length-1);
+      }
+      else
+      {
+        this.text += event.key;
+      }
+      //custom stroke, fill style
+      this.context.lineJoin = 'miter';
+      this.context.lineCap = 'round';
+      this.context.lineWidth = this.lineWidth;
+      this.context.strokeStyle = this.strokeColor;
+      this.context.fillStyle = 'black';
+      this.context.font = "30px Arial";
+      //start drawing path
+      this.context.fillText(this.text, this.shapeService.lastX, this.shapeService.lastY);
     }
   }
 }

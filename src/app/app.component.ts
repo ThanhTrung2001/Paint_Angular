@@ -16,41 +16,43 @@ export class AppComponent implements AfterViewInit{
   currentMouseX:number = 0;
   currentMouseY:number = 0;
   @ViewChild('paintCanvas', { static: true }) canvas!: ElementRef<HTMLCanvasElement>;
-  @HostListener('document:keydown.control.z', ['$event'])
-  pressCtrlZ(event: KeyboardEvent) {
-    // Add your desired functionality here
-    this.rollback();
+  // @HostListener('document:keydown.control.z', ['$event'])
+  // pressCtrlZ(event: KeyboardEvent) {
+  //   // Add your desired functionality here
+  //   this.rollback();
+  // }
+  @HostListener('document:keydown', ['$event'])
+  handleKeyDown(event: KeyboardEvent) {
+    if (event.ctrlKey) {
+      // Handle Ctrl key combinations separately
+      switch (event.key.toLowerCase()) {
+        case 'z':
+          this.rollback();
+          break;
+        case 'y':
+          this.redo();
+          break;
+        case 'x':
+          this.cutSelected();
+          break;
+        case 'c':
+          this.copySelected();
+          break;
+        case 'v':
+          this.pasteSelected();
+          break;
+      }
+    } else if (event.key.toLowerCase() === 'delete') {
+      this.deleteSelected();
+    } else {
+      // Handle other keydown events
+      this.appService.drawText(event);
+    }
   }
-  @HostListener('document:keydown.control.y', ['$event'])
-  pressCtrlY(event: KeyboardEvent) {
-    this.redo();
-  }
-
-  //select
-  @HostListener('document:keydown.control.x', ['$event'])
-  pressCtrlX(event: KeyboardEvent) {
-    // Add your desired functionality here
-    this.cutSelected();
-  }
-
-  @HostListener('document:keydown.control.c', ['$event'])
-  pressCtrlC(event: KeyboardEvent) {
-    // Add your desired functionality here
-    this.copySelected();
-  }
-
-  @HostListener('document:keydown.control.v', ['$event'])
-  pressCtrlV(event: KeyboardEvent) {
-    this.pasteSelected();
-  }
-
-  @HostListener('document:keydown.delete', ['$event'])
-  pressDelete(event: KeyboardEvent) {
-    // Add your desired functionality here
-    this.deleteSelected();
-  }
-
-
+  // drawText(event: KeyboardEvent) {
+  //   this.appService.drawText(event);
+  // }
+  
 
 
   constructor(private appService: AppService) {}
