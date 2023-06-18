@@ -15,38 +15,16 @@ An Paint Web Application using Angular, GithubPage (Deploy), GithubActions & Doc
 <li>Clear(Clear Canvas)</li>
 </ul>
 
-### 1.2 Tool
-![image](https://github.com/ThanhTrung2001/Paint_Angular/assets/75150646/a7b04b23-f97b-4ffa-acfb-549f65838517)
-
+### 1.2 Clipboard
+![image](https://github.com/ThanhTrung2001/Paint_Angular/assets/75150646/6df58205-5824-4a9c-866a-12fe373a312c)
 <ul>
-<li>Pencil(Normal Draw)</li>
-<li>Eraser</li>
-<li>Ink (not complete)</li>
-<li>Text</li>
-<li>EyeDrop(Get color in canvas only)</li>
+<li>Paste clipboard area</li>
+<li>Cut selected area</li>
+<li>Copy selected area</li>
 </ul>
 
-### 1.3 Shape
-![image](https://github.com/ThanhTrung2001/Paint_Angular/assets/75150646/6a1f56cb-519e-41dd-9d1d-4f0fbd506131)
-
-<ul>
-<li>Rectangle</li>
-<li>Circle</li>
-<li>Triangle</li>
-<li>Line</li>
-<li>Fill Shape Checkbox</li>
-</ul>
-
-### 1.4 Custom
-![image](https://github.com/ThanhTrung2001/Paint_Angular/assets/75150646/dfd07099-4d0b-46c7-b451-1e5a95045c10)
-
-<ul>
-<li>Line width cutom</li>
-<li>Color custom : Stroke & Fill</li>
-</ul>
-
-### 1.5 Advanced
-![image](https://github.com/ThanhTrung2001/Paint_Angular/assets/75150646/bf0dfb87-059a-462f-abf1-34e68486dd81)
+### 1.3 Advanced Images
+![image](https://github.com/ThanhTrung2001/Paint_Angular/assets/75150646/3c9ef135-aecf-4829-8f70-52fff5acb21d)
 
 <ul>
 <li>Selected Tool</li>
@@ -56,10 +34,41 @@ An Paint Web Application using Angular, GithubPage (Deploy), GithubActions & Doc
 <li>Flip horizontal</li>
 </ul>
 
-### 1.6 Mouse Coordinates
+
+### 1.4 Tool
+![image](https://github.com/ThanhTrung2001/Paint_Angular/assets/75150646/a7b04b23-f97b-4ffa-acfb-549f65838517)
+
+<ul>
+<li>Pencil(Normal Draw)</li>
+<li>Eraser</li>
+<li>Ink (have bugs)</li>
+<li>Text</li>
+<li>EyeDrop(Get color in canvas only)</li>
+</ul>
+
+### 1.5 Shape
+![image](https://github.com/ThanhTrung2001/Paint_Angular/assets/75150646/5d03e136-c363-4f32-ae10-350a67abda94)
+
+<ul>
+<li>Rectangle</li>
+<li>Circle</li>
+<li>Triangle</li>
+<li>Line</li>
+<li>Fill Shape Checkbox</li>
+</ul>
+
+### 1.6 Custom
+![image](https://github.com/ThanhTrung2001/Paint_Angular/assets/75150646/e613441d-eb5e-45a7-bf38-aab312ff7991)
+
+<ul>
+<li>Line width cutom</li>
+<li>Color custom : Stroke & Fill</li>
+</ul>
+
+### 1.7 Mouse Coordinates
 ![image](https://github.com/ThanhTrung2001/Paint_Angular/assets/75150646/15e04f22-6269-41b2-80af-de6d686ec774)
 
-### 1.7 Combind key
+### 1.8 Combind key
 <ul>
 <li>Ctrl + x : cut selected area</li>
 <li>Ctrl + c : copy selected are</li>
@@ -82,11 +91,10 @@ An Paint Web Application using Angular, GithubPage (Deploy), GithubActions & Doc
  </ul>
 
 ## 3 SCREENSHOT
-<ul>
-  <li>Main</li>
-    <img width="700" height="450" src=https://github.com/ThanhTrung2001/Paint_Angular/assets/75150646/7c8be321-4c0f-4032-b0fa-8e7f6bfab2ce>
-    <img width="700" height="450" src=https://github.com/ThanhTrung2001/Paint_Angular/assets/75150646/d2e285b3-ed47-4a3d-b967-d5b31339eb83>
-  <li>Select Tool</li>
-    <img width="700" height="450" src=https://github.com/ThanhTrung2001/Paint_Angular/assets/75150646/eb9f64f2-1308-4de6-a987-20298fe543fa>
-</ul>
+![image](https://github.com/ThanhTrung2001/Paint_Angular/assets/75150646/b7208747-e6a2-4a84-b582-223dd1caa45d)
+![image](https://github.com/ThanhTrung2001/Paint_Angular/assets/75150646/926e39df-107a-4b17-a599-cbf2d1ec5f30)
+![image](https://github.com/ThanhTrung2001/Paint_Angular/assets/75150646/eb5a4c57-4773-4ea9-8999-0386afcbca9d)
+![image](https://github.com/ThanhTrung2001/Paint_Angular/assets/75150646/7a139c5e-b4cd-498e-8b08-d5763955f118)
+
+
 
