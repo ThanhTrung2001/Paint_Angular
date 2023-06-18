@@ -492,8 +492,7 @@ export class AppService {
       this.context.lineJoin = 'miter';
       this.context.lineCap = 'round';
       this.context.lineWidth = this.lineWidth;
-      this.context.strokeStyle = this.strokeColor;
-      this.context.fillStyle = 'black';
+      this.context.fillStyle = this.strokeColor;
       this.context.font = "30px Arial";
       //start drawing path
       this.context.fillText(this.text, this.shapeService.lastX, this.shapeService.lastY);
