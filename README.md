@@ -16,7 +16,7 @@ An Paint Web Application using Angular, GithubPage (Deploy), GithubActions & Doc
 </ul>
 
 ### 1.2 Tool
-![image](https://github.com/ThanhTrung2001/Paint_Angular/assets/75150646/b5f8c51e-48a1-496f-8fdf-b3551e3dae8c)
+![image](https://github.com/ThanhTrung2001/Paint_Angular/assets/75150646/a7b04b23-f97b-4ffa-acfb-549f65838517)
 
 <ul>
 <li>Pencil(Normal Draw)</li>
@@ -38,19 +38,22 @@ An Paint Web Application using Angular, GithubPage (Deploy), GithubActions & Doc
 </ul>
 
 ### 1.4 Custom
-![image](https://github.com/ThanhTrung2001/Paint_Angular/assets/75150646/37142532-00b6-48c1-b249-be41c24a2e4f)
+![image](https://github.com/ThanhTrung2001/Paint_Angular/assets/75150646/dfd07099-4d0b-46c7-b451-1e5a95045c10)
 
 <ul>
 <li>Line width cutom</li>
-<li>Color custom</li>
+<li>Color custom : Stroke & Fill</li>
 </ul>
 
 ### 1.5 Advanced
-![image](https://github.com/ThanhTrung2001/Paint_Angular/assets/75150646/24c17536-e9b3-44dc-9e0b-554ce23dcae9)
+![image](https://github.com/ThanhTrung2001/Paint_Angular/assets/75150646/bf0dfb87-059a-462f-abf1-34e68486dd81)
 
 <ul>
 <li>Selected Tool</li>
-<li>Rotate & Flip tool (not done)</li>
+<li>Rotate 90</li>
+<li>Rotate -90</li>
+<li>Flip vertical</li>
+<li>Flip horizontal</li>
 </ul>
 
 ### 1.6 Mouse Coordinates
@@ -76,25 +79,13 @@ An Paint Web Application using Angular, GithubPage (Deploy), GithubActions & Doc
   <li>Deploy: AngularCLI-GithubPages + GithubActions</li>
   <li>CICD : Docker + GithubActions</li>
  </ul>
- 
-## 3 DIAGRAM
-<ul>
-<!--   <li>UseCase Diagram - User </li>
-  <img width="700" height="700" src="https://github.com/ThanhTrung2001/OnlineBookShop/assets/75150646/1d3ed45a-57c4-404b-a7e2-65a950f4aa26">
-  <li>UseCase Diagram -Admin & Staff </li>
-  <img width="700" height="700" src="https://github.com/ThanhTrung2001/OnlineBookShop/assets/75150646/1d3ed45a-57c4-404b-a7e2-65a950f4aa26">
-  <li>Activity Diagrams</li>
-  <img width="700" height="700" src="https://github.com/ThanhTrung2001/OnlineBookShop/assets/75150646/9311f40e-0fa4-4ac6-896a-f51c9ec0de82">
-  <li>Sequence Diagram</li>
-  <img width="800" height="600" src="https://github.com/ThanhTrung2001/OnlineBookShop/assets/75150646/6998a653-9569-4161-ba3c-0395d9b6bb09"> -->
-</ul>
 
-## 4 SCREENSHOT
+## 3 SCREENSHOT
 <ul>
   <li>Main</li>
-    <img width="700" height="500" src=https://github.com/ThanhTrung2001/Paint_Angular/assets/75150646/3ece0442-2dff-4e7f-b9a9-ddf5ef2b134d>
-    <img width="700" height="500" src=https://github.com/ThanhTrung2001/Paint_Angular/assets/75150646/5fb2c59c-9a98-4e64-af3a-8069098035cc>
+    <img width="700" height="450" src=https://github.com/ThanhTrung2001/Paint_Angular/assets/75150646/7c8be321-4c0f-4032-b0fa-8e7f6bfab2ce>
+    <img width="700" height="450" src=https://github.com/ThanhTrung2001/Paint_Angular/assets/75150646/d2e285b3-ed47-4a3d-b967-d5b31339eb83>
   <li>Select Tool</li>
-    <img width="700" height="500" src=https://github.com/ThanhTrung2001/Paint_Angular/assets/75150646/01d09f8a-341f-421e-9620-8260454436f9>
+    <img width="700" height="450" src=https://github.com/ThanhTrung2001/Paint_Angular/assets/75150646/eb9f64f2-1308-4de6-a987-20298fe543fa>
 </ul>
 
