@@ -37,7 +37,7 @@
     display:flex;
     align-items: center;
     justify-content: center;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 500;
   }
 
@@ -46,7 +46,8 @@
     cursor: pointer;
     display:flex;
     justify-content: center;
-    font-size: 13px;
+    font-size: 16px;
+    font-weight: 500;
   }
 
   .selection-bar .button-container button img{
@@ -63,8 +64,8 @@ input[type="color"] {
   -moz-appearance: none;
   appearance: none;
   background-color: transparent;
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
   border: none;
   cursor: pointer;
 }
@@ -95,7 +96,7 @@ input[type="number"]{
   height: 120px;
   margin-top: 15px;
   margin-bottom:20px;
-  padding: 0 15px;
+  padding: 0 10px;
   display:flex;
   flex-direction: row;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
@@ -110,7 +111,13 @@ input[type="number"]{
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: end;
+  }
+
+  .tool-multicolor-container{
+    margin: 0 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
   }
 
   .tool-shape-container{
@@ -130,7 +137,7 @@ input[type="number"]{
     }
 
       .tool button{
-        height: 30px;
+        height: 26px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -186,11 +193,11 @@ input[type="number"]{
   .tool-custom{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
     margin: 8px;
   }  
 
-    .tool-custom .tool-size-container, .tool-color-container{
+    .tool-custom .tool-size-container{
       display:flex;
       flex-direction: column;
       padding-bottom: 5px;
@@ -234,10 +241,13 @@ input[type="number"]{
 
 /* bottom-section */
 .bottom-section{
-  display:flex;
+  position: fixed;
+  bottom: 0;
+  background-color: #e0e0e0;
+  display:block;
   flex-direction: row;
-  margin-top:10px;
-  margin-bottom: 5px;
+  padding: 5px 10px;
+  border-radius: 0 5px;
 }
 
 

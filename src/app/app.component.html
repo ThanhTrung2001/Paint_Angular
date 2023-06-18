@@ -25,6 +25,67 @@
   </section>
   <div class="toolbar-container">
     <section class="toolbar-section">
+      <!-- Clipboard -->
+      <div class="tool-container">
+        <div class="tool-clipboard-container">
+          <div class="big-tool-button">
+            <button type="button" (click)="pasteSelected()">
+              <img src="assets/icons/paste.png" alt="">
+              <span class="tooltiptext">Paste</span>
+            </button>
+          </div>
+          <div class="tool">
+            <button type="button" (click)="cutSelected()">
+              <img src="assets/icons/cut.png" alt="">
+              <span class="tooltiptext">Cut</span>
+            </button>
+            <button type="button" (click)="copySelected()">
+              <img src="assets/icons/copy.png" alt="">
+              <span class="tooltiptext">Copy</span>
+            </button>
+          </div>
+        </div>
+        <div class="tool-title">
+          Clipboard
+        </div>
+      </div>
+      <div class="divider"></div>
+      <!-- Select -->
+      <div class="tool-container">
+        <div class="tool-select-container">
+          <div class="big-tool-button">
+            <div class="big-tool-button">
+              <button type="button" [class.active]="currentTool === 'selectArea'" (click)="useTool('selectArea')">
+                <img src="assets/icons/select.png" alt="">
+                <span class="tooltiptext">Select</span>
+              </button>
+          </div>
+          </div>
+          <div class="tool">
+            <button type="button" (click)="rotate(-90)">
+              <img src="assets/icons/rotate_left.png" alt="">
+              <span class="tooltiptext">Rotate left 90</span>
+            </button>
+            <button type="button" (click)="rotate(90)">
+              <img src="assets/icons/rotate_right.png" alt="">
+              <span class="tooltiptext">Rotate right 90</span>
+            </button>
+            <button type="button" (click)="flipVertical()">
+              <img src="assets/icons/flip_horizontal.png" alt="">
+              <span class="tooltiptext">Flip vertical</span>
+            </button>
+            <button type="button" (click)="flipHorizontal()">
+              <img src="assets/icons/flip_vertical.png" alt="">
+              <span class="tooltiptext">Flip horizontal</span>
+            </button>
+          </div>
+        </div>
+        <div class="tool-title">
+          Images
+        </div>
+      </div>
+      <div class="divider"></div>
+      <!--Tool-->
       <div class="tool-container">
         <div class="tool">
           <button type="button" [class.active]="currentTool === 'pencil'" (click)="useTool('pencil')">
@@ -53,87 +114,64 @@
         </div>
       </div>
       <div class="divider"></div>
-      <div class="tool-shape-container">
-        <div class="tool">
-          <button type="button" [class.active]="currentShape === 'rectangle'" (click)="setShape('rectangle')">
-            <img src="assets/icons/rectangular.png" alt="">
-            <span class="tooltiptext">Rectangle</span>
-          </button>
-          <button type="button" [class.active]="currentShape === 'triangle'" (click)="setShape('triangle')">
-            <img src="assets/icons/triangle.png" alt="">
-            <span class="tooltiptext">Triangle</span>
-          </button>
-          <button type="button" [class.active]="currentShape === 'circle'" (click)="setShape('circle')">
-            <img src="assets/icons/circle.png" alt="">
-            <span class="tooltiptext">Ellipse</span>
-          </button>
-          <button type="button" [class.active]="currentShape === 'line'" (click)="setShape('line')">
-            <img src="assets/icons/line.png" alt="">
-            <span class="tooltiptext">Line</span>
-          </button>
+      <!--Shape-->
+      <div class="tool-container">
+        <div class="tool-multishape-container">
+          <div class="tool">
+            <button type="button" [class.active]="currentShape === 'rectangle'" (click)="setShape('rectangle')">
+              <img src="assets/icons/rectangular.png" alt="">
+              <span class="tooltiptext">Rectangle</span>
+            </button>
+            <button type="button" [class.active]="currentShape === 'triangle'" (click)="setShape('triangle')">
+              <img src="assets/icons/triangle.png" alt="">
+              <span class="tooltiptext">Triangle</span>
+            </button>
+            <button type="button" [class.active]="currentShape === 'circle'" (click)="setShape('circle')">
+              <img src="assets/icons/circle.png" alt="">
+              <span class="tooltiptext">Ellipse</span>
+            </button>
+            <button type="button" [class.active]="currentShape === 'line'" (click)="setShape('line')">
+              <img src="assets/icons/line.png" alt="">
+              <span class="tooltiptext">Line</span>
+            </button>
+          </div>
+          <div class="tool-shape-fill">
+            <input type="checkbox" id="fill-checkbox" (change)="changeFill($event)">
+            <label for="fill-checkbox">Filled?</label>
+          </div>
         </div>
         <div class="tool-title">
           Shapes
         </div>
       </div>
-      <div class="tool-shape-fill">
-        <label for="fill-checkbox">Filled?</label>
-        <input type="checkbox" id="fill-checkbox" (change)="changeFill($event)">
-      </div>
       <div class="divider"></div>
+      <!--Custom-->
       <div class="tool-container">
         <div class="tool-custom">
           <div class="tool-size-container">
             <input type="number" id="strock-customer" value="1" (change)="changeLineWidth($event)">
           </div>
         </div>
-        <label class="tool-title" for="strock-customer">Size</label>
+        <label class="tool-title" for="strock-customer">Stroke size</label>
       </div>
       <div class="divider"></div>
-      <div class="tool-container">
-        <div class="tool-custom">
+      <div class="tool-multicolor-container">
           <div class="tool-color-container">
-            <input type="color" id="color-picker-stroke" [value]="strokeColor" (change)="changeColor($event)">
+            <div class="tool-custom">
+              <div class="tool-color-container">
+                <input type="color" id="color-picker-stroke" [value]="strokeColor" (change)="changeColor($event)">
+              </div>
+            </div>
+            <label class="tool-color-title" for="color-picker-stroke">Stroke Color</label>
           </div>
-        </div>
-        <label class="tool-title" for="color-picker-stroke">Stroke</label>
-      </div>
-      <div class="divider"></div>
-      <div class="tool-container">
-        <div class="tool-custom">
           <div class="tool-color-container">
-            <input type="color" id="color-picker-fill" [value]="fillColor" (change)="changeFillColor($event)">
+            <div class="tool-custom">
+              <div class="tool-color-container">
+                <input type="color" id="color-picker-fill" [value]="fillColor" (change)="changeFillColor($event)">
+              </div>
+            </div>
+            <label class="tool-color-title" for="color-picker-fill">Fill Color</label>
           </div>
-        </div>
-        <label class="tool-title" for="color-picker-fill">Fill</label>
-      </div>
-      <div class="divider"></div>
-      <div class="tool-container">
-        <div class="tool">
-          <button type="button" [class.active]="currentTool === 'selectArea'" (click)="useTool('selectArea')">
-            <img src="assets/icons/select.png" alt="">
-            <span class="tooltiptext">Select</span>
-          </button>
-          <button type="button" (click)="rotate(-90)">
-            <img src="assets/icons/rotate_left.png" alt="">
-            <span class="tooltiptext">Rotate left 90</span>
-          </button>
-          <button type="button" (click)="rotate(90)">
-            <img src="assets/icons/rotate_right.png" alt="">
-            <span class="tooltiptext">Rotate right 90</span>
-          </button>
-          <button type="button" (click)="flipVertical()">
-            <img src="assets/icons/flip_horizontal.png" alt="">
-            <span class="tooltiptext">Flip vertical</span>
-          </button>
-          <button type="button" (click)="flipHorizontal()">
-            <img src="assets/icons/flip_vertical.png" alt="">
-            <span class="tooltiptext">Flip horizontal</span>
-          </button>
-        </div>
-        <div class="tool-title">
-          Advanced
-        </div>
       </div>
     </section>
   </div>

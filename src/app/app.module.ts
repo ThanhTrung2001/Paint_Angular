@@ -15,7 +15,7 @@ import { SnapshotService } from './service/snapshot/snapshot.service';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [AppService,ShapeService, ToolService, SnapshotService],
   bootstrap: [AppComponent]
