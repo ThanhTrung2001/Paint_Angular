@@ -22,7 +22,7 @@ An Paint Web Application using Angular, GithubPage (Deploy), GithubActions & Doc
 <li>Pencil(Normal Draw)</li>
 <li>Eraser</li>
 <li>Ink (not complete)</li>
-<li>Text(haven't make yet)</li>
+<li>Text</li>
 <li>EyeDrop(Get color in canvas only)</li>
 </ul>
 
@@ -66,6 +66,7 @@ An Paint Web Application using Angular, GithubPage (Deploy), GithubActions & Doc
 <li>Ctrl + v : paste copy/cut selected area</li>
 <li>Ctrl + z : undo</li>
 <li>Ctrl + y : redo</li>
+<li>Delete: delete selected area</li>
 </ul>
 
 ## 2 LIBRARY & TECHNOLOGY
