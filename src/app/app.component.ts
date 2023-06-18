@@ -41,10 +41,13 @@ export class AppComponent implements AfterViewInit{
         case 'v':
           this.pasteSelected();
           break;
+        default:
+          break;
       }
     } else if (event.key.toLowerCase() === 'delete') {
       this.deleteSelected();
-    } else {
+    } 
+    else {
       // Handle other keydown events
       this.appService.drawText(event);
     }
@@ -216,6 +219,7 @@ export class AppComponent implements AfterViewInit{
   }
 
   deleteSelected(){
+    console.log('delete');
     this.appService.deleteSelected();
   }
 

@@ -29,6 +29,8 @@ export class AppService {
   private rotateDegree:number = 0;
   private isFlipHorizontal:boolean = false;
   private isFlipVertical:boolean = false;
+  private tempOldCanvas:any;
+  private tempOldContext:any;
   private tempCanvas:any;
   private tempContext:any;
   //text
@@ -43,8 +45,12 @@ export class AppService {
     //
     this.tempCanvas = document.createElement('canvas');
     this.tempContext = this.tempCanvas.getContext('2d');
+    this.tempOldCanvas = document.createElement('canvas');
+    this.tempOldContext = this.tempCanvas.getContext('2d');
     this.tempCanvas.width = this.context.canvas.width;
     this.tempCanvas.height = this.context.canvas.height;
+    this.tempOldCanvas.width = this.context.canvas.width;
+    this.tempOldCanvas.height = this.context.canvas.height;
   }
 
   getContext(){
@@ -372,30 +378,25 @@ export class AppService {
 
   //rotate function
   rotate(rotateDegree: number){
+    if(this.rotateDegree == 0 )
+    {
+      this.tempOldContext.drawImage(this.context.canvas,0,0);
+    }
+    this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height);
     this.rotateDegree += rotateDegree;
+    console.log(this.rotateDegree);
+    
     if(this.rotateDegree == 360 || this.rotateDegree == -360) {
       this.rotateDegree = 0;
     }
-    if(this.rotateDegree % 360 == 0 )
-    {
-
-    }
-    else if(this.rotateDegree % 180 == 0 )
-    {
-
-    }
-    else{
-
-    }
-    const radians = rotateDegree * (Math.PI / 180);
-    this.tempContext.drawImage(this.context.canvas, 0, 0);
+    const radians = this.rotateDegree * (Math.PI / 180);
     this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height);
     this.context.save();
     this.context.translate(this.context.canvas.width/2, this.context.canvas.height/2);
     this.context.rotate(radians);
-    this.context.drawImage(this.tempContext.canvas, -this.context.canvas.width / 2, -this.context.canvas.height / 2);
+    this.context.drawImage(this.tempOldContext.canvas, -this.context.canvas.width / 2, -this.context.canvas.height / 2);
     this.context.restore();
-    
+ 
   }
 
   //flip
@@ -477,9 +478,9 @@ export class AppService {
 
   //draw Text
   drawText(event:KeyboardEvent){
-    this.context.putImageData(this.snapshot, 0 , 0);
     if(this.toolService.selectedTool == this.toolService.isText)
     {
+      this.context.putImageData(this.snapshot, 0 , 0);
       if(event.key == 'Backspace')
       {
         this.text = this.text.substring(0, this.text.length-1);

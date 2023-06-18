@@ -46,8 +46,7 @@
     cursor: pointer;
     display:flex;
     justify-content: center;
-    font-size: 18px;
-    font-weight: 500;
+    font-size: 13px;
   }
 
   .selection-bar .button-container button img{
@@ -161,9 +160,9 @@ input[type="number"]{
         }
 
     .tool-title{
-      margin-bottom: 8px;
+      margin-bottom: 5px;
       font-size: 13px;
-      font-weight: bold;
+      font-family: Arial, Helvetica, sans-serif;
     }
 
   .tool-shape-fill{
@@ -180,7 +179,7 @@ input[type="number"]{
 
     .tool-shape-fill label{
       font-size: 13px;
-      font-weight: bold;
+      font-family: Arial, Helvetica, sans-serif;
     }
 
 
@@ -211,9 +210,9 @@ input[type="number"]{
       }
 
     .divider{
-      height: 80%;
+      height: 85%;
       width: 0px;
-      border: 1px solid rgba(60, 64, 67, 0.3);
+      border-left: 1px solid rgba(187, 187, 187, 0.801);
     }
 
 /* draw-section */
